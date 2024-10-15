@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DownloadFileController;
 use App\Livewire\LoginPage;
 use App\Livewire\UsersPage;
 use App\Livewire\MajorsPage;
@@ -29,6 +30,11 @@ Route::get('/requests', RequestsPage::class)->middleware('auth');
 Route::get('/settings', SettingsPage::class)->middleware('auth');
 Route::get('/attendances', AttendancesPage::class)->middleware('auth');
 Route::get('/journals', JournalsPage::class)->middleware('auth');
-Route::get('/login', LoginPage::class)->name('login')->middleware('guest');
+Route::group(['middleware'=>['role:student'], 'prefix'=>'download'], function(){
+    Route::get('/permohonan', [DownloadFileController::class, '_permohonan']);
+});
+Route::get('/download', RequestsPage::class)->middleware('auth');
 
+
+Route::get('/login', LoginPage::class)->name('login')->middleware('guest');
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout')->middleware('auth');
