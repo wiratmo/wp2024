@@ -10,6 +10,8 @@ Intergarasi sistem pengajuan, verifikasi, monitoring, dan evaluasi PKL.
     php artisan cache:clear
     php artisan migrate
     php artisan db:seed
+    npm install
+    npm run dev
 
 ```
 
