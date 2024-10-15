@@ -36,8 +36,8 @@ class UserSeeder extends Seeder
         // major
         $major = Major::create([
             'name' => 'Pengembangan Perangkat Lunak dan Gim',
+            'acronym' => 'PPLG',
             'short' => 'R',
-            'abbreviation' => 'PPLG',
         ]);
 
         // student

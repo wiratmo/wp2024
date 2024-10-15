@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('majors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('acronym');
             $table->string('short', 1);
-            $table->string('abbreviation');
             $table->timestamps();
         });
     }
