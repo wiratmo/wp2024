@@ -11,10 +11,10 @@ class DownloadFileController extends Controller
     {
         // $data = ['title' => 'Judul PDF', 'content' => 'Isi PDF Anda'];
 
-        // Load view dan buat PDF
+        // return view('pdf.permohonan');
         $pdf = Pdf::loadView('pdf.permohonan');
 
-        // Unduh PDF
-        return $pdf;
+
+        return $pdf->stream('download.pdf');
     }
 }
