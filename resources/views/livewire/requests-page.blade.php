@@ -149,7 +149,7 @@
                                                                 d="M13.232 4a1 1 0 0 1 1-1H20a1 1 0 0 1 1 1v5.768a1 1 0 1 1-2 0V6.414l-6.182 6.182a1 1 0 0 1-1.414-1.414L17.586 5h-3.354a1 1 0 0 1-1-1Z"
                                                                 clip-rule="evenodd" />
                                                         </svg>
-
+                                                        Terpenuhi
                                                     </button>
                                                 @else
                                                     <button x-data @click="$dispatch('open-modal',{name:'request'})"
@@ -166,6 +166,7 @@
                                                                 d="M13.232 4a1 1 0 0 1 1-1H20a1 1 0 0 1 1 1v5.768a1 1 0 1 1-2 0V6.414l-6.182 6.182a1 1 0 0 1-1.414-1.414L17.586 5h-3.354a1 1 0 0 1-1-1Z"
                                                                 clip-rule="evenodd" />
                                                         </svg>
+                                                        Ajukan Permohonan
                                                     </button>
                                                 @endif
                                             </td>
@@ -257,12 +258,23 @@
             @foreach ($request as $item)
 
             <div class="p-4 pt-0">
-                <div class="grid sm:grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-4">
+                <div class="grid sm:grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-4 ">
                     <div class="max-w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                         <h5 class="mb-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Data Industri</h5>
-                        <p class="font-semibold text-gray-900 dark:text-white">Nama Industri : <span class="font-normal">{{ $item->industry->name }}</span> </p>
-                        <p class="font-semibold text-gray-900 dark:text-white">Telepon : <span class="font-normal">{{ $item->industry->phone }}</span> </p>
-                        <p class="font-semibold text-gray-900 dark:text-white">Alamat : <span class="font-normal">{{ $item->industry->address }}</span> </p>
+                        <table class="table-auto">
+                            <tr class="align-text-top">
+                                <td><p class="font-semibold text-gray-900 dark:text-white w-32">Nama Industri </td><td class="w-3">:</td> <td><span class="font-normal">{{ $item->industry->name }}</span> </p></td>
+                            </tr>
+                            <tr class="align-text-top">
+                                <td><p class="font-semibold text-gray-900 dark:text-white w-32">Telepon </td><td class="w-3">:</td><td> <span class="font-normal">{{ $item->industry->phone }}</span> </p></td>
+                            </tr>
+                            <tr class="align-text-top">
+                                <td><p class="font-semibold text-gray-900 dark:text-white w-32">Alamat </td><td class="w-3">:</td><td> <span class="font-normal">{{ $item->industry->address }}</span> </p></td>
+                            </tr>
+                        </table>
+
+
+
                     </div>
                     <div class="max-w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                         <h5 class="mb-5 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Progress permohonan</h5>
@@ -273,18 +285,22 @@
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
                                     </svg>
                                 </span>
-                                <h3 class="font-medium leading-tight">Pengajuan Tempat PKL</h3>
-                                <p class="text-sm">Telah mengajukan tempat PKL</p>
+                                <h2 class="font-medium leading-tight">Pengajuan Tempat PKL</h3>
+                                <p class="text-sm italic p-2">Telah mengajukan tempat PKL</p>
+                                <ul>
+                                    <p class="text-sm font-bold">Unduh berkas pengajuan</p>
+                                    <li><a href="http://" class="text-sm italic">Permohonan</a></li>
+                                </ul>
                             </li>
-                            {{-- <li class="mb-10 ms-6">
+                            <li class="mb-10 ms-6">
                                 <span class="absolute flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full -start-4 ring-4 ring-gray-400 dark:ring-gray-900 dark:bg-gray-700">
                                     <svg class="w-3.5 h-3.5 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
                                         <path d="M16 1h-3.278A1.992 1.992 0 0 0 11 0H7a1.993 1.993 0 0 0-1.722 1H2a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2Zm-3 14H5a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2Zm0-4H5a1 1 0 0 1 0-2h8a1 1 0 1 1 0 2Zm0-5H5a1 1 0 0 1 0-2h2V2h4v2h2a1 1 0 1 1 0 2Z"/>
                                     </svg>
                                 </span>
-                                <h3 class="font-medium leading-tight">Proses Review</h3>
+                                <h2 class="font-medium leading-tight">Proses Review</h3>
                                 <p class="text-sm">Proses review</p>
-                            </li> --}}
+                            </li>
                             <li class="mb-10 ms-6">
                                 @if ($item->status == 'process' || $item->status == 'accepted' || $item->status == 'rejected')
                                     <span class="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -start-4 ring-4 ring-gray-400 dark:ring-gray-900 dark:bg-green-900">
@@ -299,7 +315,7 @@
                                         </svg>
                                     </span>
                                 @endif
-                                <h3 class="font-medium leading-tight">Proses Verifikasi</h3>
+                                <h2 class="font-medium leading-tight">Proses Verifikasi</h3>
                                 <p class="text-sm">Proses verifikasi oleh admin</p>
                             </li>
                             <li class="ms-6">
@@ -323,7 +339,7 @@
                                         </svg>
                                     </span>
                                 @endif
-                                <h3 class="font-medium leading-tight">Konfirmasi</h3>
+                                <h2 class="font-medium leading-tight">Konfirmasi</h3>
                                 <p class="text-sm">
                                     @if ($item->status !== 'pending' && $item->status !== 'process')
                                         @if ($item->status == 'accepted')
@@ -362,17 +378,29 @@
 
 
         @endif
-        <x-modal name="request" title="Ajukan PKL" height="h-[340px]">
+        <x-modal name="request" title="Ajukan PKL" height="h-[380px]">
             <x-slot:body>
                 <form wire:submit.prevent="request_pkl" class="p-4 md:p-5">
                     @if (!empty($selectedIndustry))
-                        <p class="font-semibold text-gray-900 dark:text-white">Nama Industri : <span class="font-normal">{{ $selectedIndustry->name }}</span> </p>
-                        <p class="font-semibold text-gray-900 dark:text-white">Nama Pimpinan : <span class="font-normal">{{ $selectedIndustry->leader }}</span> </p>
-                        <p class="font-semibold text-gray-900 dark:text-white">Alamat Industri : <span class="font-normal">{{ $selectedIndustry->address }}</span> </p>
-                        <p class="font-semibold text-gray-900 dark:text-white">Jam Kerja : <span class="font-normal">{{ \Carbon\Carbon::parse($selectedIndustry->entry_time)->format('H:i') }} - {{ \Carbon\Carbon::parse($selectedIndustry->exit_time)->format('H:i') }}</span> </p>
+                    <table class="table">
+                        <tr class="align-text-top">
+                            <td class="w-32 "><p class="font-semibold text-gray-900 dark:text-white">Nama Industri </td><td class=" w-3">:</td> <td><span class="font-normal">{{ $selectedIndustry->name }}</span> </p></td>
+                        </tr>
+                        <tr class="align-text-top">
+                            <td class="w-32 "><p class="font-semibold text-gray-900 dark:text-white">Nama Pimpinan </td><td class=" w-3">:</td> <td><span class="font-normal">{{ $selectedIndustry->leader }}</span> </p></td>
+                        </tr>
+                        <tr class="align-text-top">
+                            <td class="w-32 "><p class="font-semibold text-gray-900 dark:text-white">Alamat Industri </td><td class=" w-3">:</td> <td><span class="font-normal">{{ $selectedIndustry->address }}</span> </p></td>
+                        </tr>
+                        <tr class="align-text-top">
+                            <td class="w-32 "><p class="font-semibold text-gray-900 dark:text-white">Jam Kerja </td><td class=" w-3">:</td> <td><span class="font-normal">{{ \Carbon\Carbon::parse($selectedIndustry->entry_time)->format('H:i') }} - {{ \Carbon\Carbon::parse($selectedIndustry->exit_time)->format('H:i') }}</span> </p></td>
+                        </tr>
+                    </table>
+
+
                     @endif
 
-                    <div class="flex mt-2">
+                    <div class="flex mt-2 pt-2 pb-2">
                         <div class="flex h-5 items-center">
                             <input id="helper-checkbox" aria-describedby="helper-checkbox-text" type="checkbox"
                                 value=""

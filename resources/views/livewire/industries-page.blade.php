@@ -115,7 +115,7 @@
                                         <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $industry->name }}</td>
                                         <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ Str::limit($industry->address, 50, '...') }}</td>
                                         <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $industry->phone }}</td>
-                                        <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $industry->major->abbreviation }}</td>
+                                        <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $industry->major->acronym }}</td>
                                         <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $industry->countAcceptedRequests() }}/{{ $industry->quota }}</td>
                                         <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $industry->leader }}</td>
                                         <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ \Carbon\Carbon::parse($industry->entry_time)->format('H:i') }} - {{ \Carbon\Carbon::parse($industry->exit_time)->format('H:i') }}</td>
