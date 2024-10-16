@@ -1,6 +1,9 @@
 <div>
     @hasrole('student')
-    makan
+    <?php
+    var_dump($request);
+
+    ?>
     @if ($request->isEmpty())
     <div class="mt-1.5 p-4">
         <div class="col-span-full mb-4 xl:mb-2">

@@ -125,7 +125,7 @@ class RequestsPage extends Component
             $teacherStudentCompanions = collect(); // No teacher found, return empty collection
         }
 
-        $this->request = Request::where('user_id', Auth::id())->orWhere('status', 'relisted')->get();
+        $this->request = Request::where('user_id', Auth::id())->where('status', '!=', 'relisted')->get();
         return view('livewire.requests-page', [
             'industries' => $industries,
             'requests' => Request::paginate(20),
