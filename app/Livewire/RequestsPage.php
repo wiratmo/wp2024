@@ -52,37 +52,35 @@ class RequestsPage extends Component
         $this->requestId = $id;
         $this->selectedRequest = Request::find($id);
         $this->teacher = $this->selectedRequest->teacher_id;
-        if($this->selectedRequest->status == 'pending'){
+        if ($this->selectedRequest->status == 'pending') {
             $this->selectedRequest->update([
                 'status' => 'process',
             ]);
         }
-
     }
 
     public function accept()
     {
         $request = Request::find($this->requestId);
-        if($request->status == 'accepted'){
+        if ($request->status == 'accepted') {
             $request->update([
                 'teacher_id' => (int)$this->teacher,
             ]);
         }
 
-        if($request->status == 'process'){
+        if ($request->status == 'process') {
             $request->update([
                 'status' => 'accepted',
                 'teacher_id' => (int)$this->teacher,
             ]);
         }
         $this->dispatch('close-modal');
-
     }
 
     public function reject()
     {
         $request = Request::find($this->requestId);
-        if($request->status == 'process'){
+        if ($request->status == 'process') {
             $request->update([
                 'status' => 'rejected',
             ]);
@@ -95,12 +93,11 @@ class RequestsPage extends Component
     {
         $this->requestId = $id;
         $request = Request::find($this->requestId);
-        $request->delete();
-        // if($request->status == 'rejected'){
-        //     $request->update([
-        //         'status' => 'relisted',
-        //     ]);
-        // }
+        if ($request->status == 'rejected') {
+            $request->update([
+                'status' => 'relisted',
+            ]);
+        }
     }
 
     #[On('render-request')]
@@ -128,7 +125,7 @@ class RequestsPage extends Component
             $teacherStudentCompanions = collect(); // No teacher found, return empty collection
         }
 
-        $this->request = Request::where('user_id', Auth::id())->get();
+        $this->request = Request::where('user_id', Auth::id())->orWhere('status', 'relisted')->get();
         return view('livewire.requests-page', [
             'industries' => $industries,
             'requests' => Request::paginate(20),

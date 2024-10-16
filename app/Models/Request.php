@@ -20,6 +20,7 @@ class Request extends Model
         "user_id",
         "teacher_id",
         "notes",
+        "letter",
     ];
 
     public function user()

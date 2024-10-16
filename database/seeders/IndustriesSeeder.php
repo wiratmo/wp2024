@@ -24,5 +24,17 @@ class IndustriesSeeder extends Seeder
             "entry_time" => "07:30:00",
             "exit_time" => "16:00:00",
         ]);
+
+        Industry::create([
+            "name" => "CV. Ozeva",
+            "leader" => "Erda",
+            "address" => "Jl. Colomadu ",
+            "phone" => "663552",
+            "major_id" => 1,
+            "quota" => 8,
+            "status" => "",
+            "entry_time" => "07:30:00",
+            "exit_time" => "16:00:00",
+        ]);
     }
 }
