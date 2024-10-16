@@ -100,7 +100,7 @@
 
         <h3 style="text-align: center;"><b>( Menerima / Tidak Menerima )</b></h3>
 
-        Siswa/siswi tersebut untuk melaksanakan PKL pada tanggal 02 Oktober 2024 sampai dengan 28 Maret 2025, dengan
+        Siswa/siswi tersebut untuk melaksanakan PKL pada tanggal <b>02 Oktober 2024 sampai dengan 28 Maret 2025</b>, dengan
         ketentuan siswa/siswi tersebut harus mentaati segala peraturan atau tatatertib yang berlaku di
         Perusahaan/Bengkel/Instansi.
         Adapun siswa/siswi yang kami terima sebagai berikut:
