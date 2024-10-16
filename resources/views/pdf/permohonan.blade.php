@@ -70,42 +70,108 @@
             <tr>
                 <td colspan="4"></td>
                 <td>
-                    <p style="line-height: 0.5;">Karanganyar,
-                        01 Oktober 2024</p>
-                    <p style="line-height: 0.5;">Kepala SMK Negeri 2 Karanganyar</p>
-                    <p style="line-height: 0.5;">Kabupaten Karanganyar</p><br><br><br><br>
-                    <p style="line-height: 0.5;"><b>Drs. Soetanto,
-                            M.T</b></p>
-                    <p style="line-height: 0.5;">Pembina Tk. I</p>
-                    <p style="line-height: 0.5;">NIP. 19661029 199802 1 002</p>
+                    <p>Karanganyar, 01 Oktober 2024 <br>
+                        Kepala SMK Negeri 2 Karanganyar <br>
+                        Kabupaten Karanganyar <br>
+                        <br><br><br><br>
+                        <b>Drs. Soetanto,M.T</b><br>
+                        Pembina Tk. I <br>
+                        NIP. 19661029 199802 1 002<br>
+                    </p>
                 </td>
             </tr>
         </table>
     </div>
     <div class="page-break"></div>
-    <div>
-        <h2 style="text-align: center;">SURAT BALASAN DARI DU/DI</h2>
-
-        <P>
+    <div style="margin-right: 40px; margin-left: 30px">
+        <h3 style="text-align: center;">SURAT BALASAN DARI DU/DI</h3>
+        <br>
+        <p>
             Kepada <br>
-            Yth.KEPALA SMK NEGERI 2 KARANGANYAR <br>
+            Yth. <b>KEPALA SMK NEGERI 2 KARANGANYAR</b> <br>
             Jl. Yos Sudarso Jengglong Bejen Telp. (0271) 494549 <br>
             Karanganyar <br>
-        </P>
-        <P>
+        </p>
+        <p>
             Dengan hormat,<br>
-            Sehubungan dengan Surat Permohonan Tempat Praktik Kerja Lapangan (PKL) dengan nomor 421.4/
-            670/2024 tertanggal 01 Oktober 2024 maka kami dari pihak <b>Al Jadid Offset, Jl. M Supeno, Tegalgede,
-                Karanganyar</b> menyatakan :
+        </p>
+        <p style="text-align: justify">
+            Sehubungan dengan Surat Permohonan Tempat Praktik Kerja Lapangan (PKL) dengan nomor 421.4/ 670/2024
+            tertanggal 01 Oktober 2024 maka kami dari pihak <b>Al Jadid Offset, Jl. M Supeno, Tegalgede, Karanganyar</b>
+            menyatakan :
 
-        <h3 style="text-align: center;"><b>( Menerima / Tidak Menerima )</b></h3>
+        <h4 style="text-align: center;"><b>( Menerima / Tidak Menerima )</b></h4>
 
-        Siswa/siswi tersebut untuk melaksanakan PKL pada tanggal <b>02 Oktober 2024 sampai dengan 28 Maret 2025</b>, dengan
-        ketentuan siswa/siswi tersebut harus mentaati segala peraturan atau tatatertib yang berlaku di
-        Perusahaan/Bengkel/Instansi.
-        Adapun siswa/siswi yang kami terima sebagai berikut:
+        <p>
+            Siswa/siswi tersebut untuk melaksanakan PKL pada tanggal <b>02 Oktober 2024 sampai dengan 28 Maret 2025</b>,
+            dengan ketentuan siswa/siswi tersebut harus mentaati segala peraturan atau tatatertib yang berlaku di
+            Perusahaan/Bengkel/Instansi. <br>
+            Adapun siswa/siswi yang kami terima sebagai berikut:
+        </p>
+        <table border="1" style="margin-left: 20px;">
+            <tr>
+                <th style="width: 15px;">No.</th>
+                <th style="width: 230px;">Nama Siswa</th>
+                <th style="width: 50px;">NIS</th>
+                <th style="width: 80px;">Kelas</th>
+                <th style="width: 150px;">Konsentrasi Keahlian</th>
+            </tr>
+            <tr style="text-align: center;">
+                <td>1</td>
+                <td>GALANG KRISTANTO</td>
+                <td>8575</td>
+                <td>XII RPL A</td>
+                <td>Rekayasa Perangkat Lunak</td>
+            </tr>
+            <tr style="text-align: center;">
+                <td>2</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr style="text-align: center;">
+                <td>3</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr style="text-align: center;">
+                <td>5</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr style="text-align: center;">
+                <td>6</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        </p>
+        <br>
+        <p>
+            Demikian surat keterangan ini kami buat semoga dapat dimaklumi dan dapat dipergunakan sebagaimana mestinya.
+            <br>
+            NB. : <br>
+            *) coret yang tidak perlu
 
-        </P>
+        </p>
+        <p style="margin-left: 400px">...................., ....................... 2024 <br> <br>
+            Pimpinan DU/DI <br><br>
+            .......................................... <br>
+            <br><br><br><br>
+            <br>
+            .......................................... <br>
+        </p>
+
+        <div>
+
+        </div>
     </div>
 </body>
 

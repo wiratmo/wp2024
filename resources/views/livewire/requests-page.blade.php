@@ -264,9 +264,9 @@
     @foreach ($request as $item)
 
     <div class="p-4 pt-0">
-        <div class="grid sm:grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-4 ">
+        <div class="grid sm:grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-4 ">
             <div
-                class="max-w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                class="max-w-full p-6  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <h5 class="mb-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Data Industri</h5>
                 <table class="table-auto">
                     <tr class="align-text-top">
@@ -299,7 +299,7 @@
 
             </div>
             <div
-                class="max-w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                class="max-w-full p-6 col-span-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <h5 class="mb-5 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Progress permohonan
                 </h5>
                 <ol
@@ -314,10 +314,21 @@
                             </svg>
                         </span>
                         <h2 class="font-medium leading-tight">Pengajuan Tempat PKL</h3>
-                            <p class="text-sm italic p-2">Telah mengajukan tempat PKL</p>
+
                             <ul>
-                                <p class="text-sm font-bold">Unduh berkas pengajuan</p>
-                                <li><a href="{{route('download-permohonan')}}" class="text-sm italic">Permohonan</a>
+                                <p class="text-sm ">Unduh berkas pengajuan</p>
+                                <li>
+                                    <a href="{{route('download-permohonan')}}" class="text-sm italic flex items-center p-2 ">
+
+                                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                                <path fill-rule="evenodd" d="M13 11.15V4a1 1 0 1 0-2 0v7.15L8.78 8.374a1 1 0 1 0-1.56 1.25l4 5a1 1 0 0 0 1.56 0l4-5a1 1 0 1 0-1.56-1.25L13 11.15Z" clip-rule="evenodd"/>
+                                                <path fill-rule="evenodd" d="M9.657 15.874 7.358 13H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2.358l-2.3 2.874a3 3 0 0 1-4.685 0ZM17 16a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H17Z" clip-rule="evenodd"/>
+
+                                              </svg>
+
+                                              <span class="ml-3" sidebar-toggle-item="">Surat Permohonan Tempat PKL</span>
+
+                                    </a>
                                 </li>
                             </ul>
                     </li>
@@ -330,8 +341,23 @@
                                     d="M16 1h-3.278A1.992 1.992 0 0 0 11 0H7a1.993 1.993 0 0 0-1.722 1H2a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2Zm-3 14H5a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2Zm0-4H5a1 1 0 0 1 0-2h8a1 1 0 1 1 0 2Zm0-5H5a1 1 0 0 1 0-2h2V2h4v2h2a1 1 0 1 1 0 2Z" />
                             </svg>
                         </span>
-                        <h2 class="font-medium leading-tight">Proses Review</h3>
-                            <p class="text-sm">Proses review</p>
+                        <h2 class="font-medium leading-tight">Tanggapan dari DU/DI</h3>
+                            <p class="text-sm">Upload surat </p>
+
+{{-- form upload surat balasan --}}
+                            <div class="flex items-center justify-center w-full">
+    <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+            <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+            </svg>
+            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+            <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+        </div>
+        <input id="dropzone-file" type="file" class="hidden" />
+    </label>
+</div>
+{{-- form upload surat balasan --}}
                     </li>
                     <li class="mb-10 ms-6">
                         @if ($item->status == 'process' || $item->status == 'accepted' || $item->status == 'rejected')
