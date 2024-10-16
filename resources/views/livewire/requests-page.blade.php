@@ -1,9 +1,5 @@
 <div>
     @hasrole('student')
-    <?php
-    var_dump($request);
-
-    ?>
     @if ($request->isEmpty())
     <div class="mt-1.5 p-4">
         <div class="col-span-full mb-4 xl:mb-2">
@@ -119,31 +115,40 @@
                                                     <label for="checkbox-1" class="sr-only">checkbox</label>
                                                 </div>
                                             </td> --}}
-                                <td class="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
+                                <td
+                                    class="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
                                     {{ $industry->name }}
                                 </td>
-                                <td class="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
+                                <td
+                                    class="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
                                     {{ $industry->address }}
                                 </td>
-                                <td class="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
+                                <td
+                                    class="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
                                     {{ $industry->phone }}
                                 </td>
-                                <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <td
+                                    class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {{ $industry->countAcceptedRequests() }}/{{ $industry->quota }}
                                 </td>
-                                <td class="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
+                                <td
+                                    class="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
                                     {{ $industry->leader }}
                                 </td>
                                 @if ($industry->countAcceptedRequests() >= $industry->quota)
-                                <td class="whitespace-nowrap p-4 text-base font-normal text-gray-900 dark:text-white">
+                                <td
+                                    class="whitespace-nowrap p-4 text-base font-normal text-gray-900 dark:text-white">
                                     <div class="flex items-center">
-                                        <div class="mr-2 h-2.5 w-2.5 rounded-full bg-red-500"></div> Terpenuhi
+                                        <div class="mr-2 h-2.5 w-2.5 rounded-full bg-red-500"></div>
+                                        Terpenuhi
                                     </div>
                                 </td>
                                 @else
-                                <td class="whitespace-nowrap p-4 text-base font-normal text-gray-900 dark:text-white">
+                                <td
+                                    class="whitespace-nowrap p-4 text-base font-normal text-gray-900 dark:text-white">
                                     <div class="flex items-center">
-                                        <div class="mr-2 h-2.5 w-2.5 rounded-full bg-green-400"></div> Tersedia
+                                        <div class="mr-2 h-2.5 w-2.5 rounded-full bg-green-400"></div>
+                                        Tersedia
                                     </div>
                                 </td>
                                 @endif
@@ -151,8 +156,9 @@
                                     @if ($industry->countAcceptedRequests() >= $industry->quota)
                                     <button disabled type="button"
                                         class="text-white bg-blue-400 dark:bg-blue-500 cursor-not-allowed font-medium rounded-lg text-sm px-3 py-2 text-center">
-                                        <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                            width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                        <svg class="h-4 w-4" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            fill="currentColor" viewBox="0 0 24 24">
                                             <path fill-rule="evenodd"
                                                 d="M11.403 5H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6.403a3.01 3.01 0 0 1-1.743-1.612l-3.025 3.025A3 3 0 1 1 9.99 9.768l3.025-3.025A3.01 3.01 0 0 1 11.403 5Z"
                                                 clip-rule="evenodd" />
@@ -167,8 +173,9 @@
                                         wire:click="$dispatch('open-request', { id: {{ $industry->id }} })"
                                         type="button"
                                         class="inline-flex items-center rounded-lg bg-blue-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                        <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                            width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                        <svg class="h-4 w-4" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            fill="currentColor" viewBox="0 0 24 24">
                                             <path fill-rule="evenodd"
                                                 d="M11.403 5H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6.403a3.01 3.01 0 0 1-1.743-1.612l-3.025 3.025A3 3 0 1 1 9.99 9.768l3.025-3.025A3.01 3.01 0 0 1 11.403 5Z"
                                                 clip-rule="evenodd" />
@@ -262,75 +269,61 @@
                     </li>
                 </ol>
             </nav>
-            <h1 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Permohonan PKL</h1>
         </div>
     </div>
     @foreach ($request as $item)
-
     <div class="p-4 pt-0">
         <div class="grid sm:grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-4 ">
             <div
-                class="max-w-full p-6  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <h5 class="mb-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Data Industri</h5>
-                <table class="table-auto">
-                    <tr class="align-text-top">
-                        <td>
-                            <p class="font-semibold text-gray-900 dark:text-white w-32">Nama Industri
-                        </td>
-                        <td class="w-3">:</td>
-                        <td><span class="font-normal">{{ $item->industry->name }}</span> </p>
-                        </td>
-                    </tr>
-                    <tr class="align-text-top">
-                        <td>
-                            <p class="font-semibold text-gray-900 dark:text-white w-32">Telepon
-                        </td>
-                        <td class="w-3">:</td>
-                        <td> <span class="font-normal">{{ $item->industry->phone }}</span> </p>
-                        </td>
-                    </tr>
-                    <tr class="align-text-top">
-                        <td>
-                            <p class="font-semibold text-gray-900 dark:text-white w-32">Alamat
-                        </td>
-                        <td class="w-3">:</td>
-                        <td> <span class="font-normal">{{ $item->industry->address }}</span> </p>
-                        </td>
-                    </tr>
-                </table>
-
-
-
+                class="max-w-full p-6 h-80  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <h5 class="mb-3 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    <span class="text-sky-800">DATA</span> INDUSTRI
+                </h5>
+                <hr> <br>
+                <p class="font-normal text-sm italic text-gray-700 dark:text-white w-32">Nama Industri</p>
+                <span class="font-medium">{{ $item->industry->name }}</span>
+                <p class="font-normal text-sm italic text-gray-700 dark:text-white w-32">Telepon </p>
+                <span class="font-medium">{{ $item->industry->phone }}</span>
+                <p class="font-normal text-sm italic text-gray-700 dark:text-white w-32">Alamat </p>
+                <span class="font-medium">{{ $item->industry->address }}</span>
             </div>
             <div
                 class="max-w-full p-6 col-span-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <h5 class="mb-5 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Progress permohonan
-                </h5>
+                <h5 class="mb-3 text-xl font-bold tracking-tight text-gray-900 dark:text-white"><span
+                        class="text-sky-800"> PROGRES</span> PENGAJUAN PKL </h5>
+                <hr> <br>
                 <ol
-                    class="relative text-gray-500 border-s ml-4 border-gray-200 dark:border-gray-700 dark:text-gray-400">
+                    class="relative text-black border-s ml-4 border-gray-200 dark:border-gray-700 dark:text-gray-400">
                     <li class="mb-10 ms-6">
                         <span
-                            class="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -start-4 ring-4 ring-gray-400 dark:ring-gray-900 dark:bg-green-900">
-                            <svg class="w-3.5 h-3.5 text-green-500 dark:text-green-400" aria-hidden="true"
+                            class="absolute flex items-center justify-center w-8 h-8 bg-green-400 rounded-full -start-4 ring-4 ring-green-400 dark:ring-gray-900 dark:bg-green-900">
+                            <svg class="w-3.5 h-3.5 text-white dark:text-green-400" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5" />
                             </svg>
                         </span>
                         <h2 class="font-medium leading-tight">Pengajuan Tempat PKL</h3>
-
                             <ul>
-                                <p class="text-sm ">Unduh berkas pengajuan</p>
+                                <p class="text-sm pt-2">Unduh berkas pengajuan</p>
                                 <li>
-                                    <a href="{{route('download-permohonan')}}" class="text-sm italic flex items-center p-2 ">
+                                    <a href="{{ route('download-permohonan') }}"
+                                        class="text-sm flex items-center p-2 ">
 
-                                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                            <path fill-rule="evenodd" d="M13 11.15V4a1 1 0 1 0-2 0v7.15L8.78 8.374a1 1 0 1 0-1.56 1.25l4 5a1 1 0 0 0 1.56 0l4-5a1 1 0 1 0-1.56-1.25L13 11.15Z" clip-rule="evenodd" />
-                                            <path fill-rule="evenodd" d="M9.657 15.874 7.358 13H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2.358l-2.3 2.874a3 3 0 0 1-4.685 0ZM17 16a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H17Z" clip-rule="evenodd" />
+                                        <svg class="w-6 h-6 text-green-800 dark:text-white" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            fill="currentColor" viewBox="0 0 24 24">
+                                            <path fill-rule="evenodd"
+                                                d="M13 11.15V4a1 1 0 1 0-2 0v7.15L8.78 8.374a1 1 0 1 0-1.56 1.25l4 5a1 1 0 0 0 1.56 0l4-5a1 1 0 1 0-1.56-1.25L13 11.15Z"
+                                                clip-rule="evenodd" />
+                                            <path fill-rule="evenodd"
+                                                d="M9.657 15.874 7.358 13H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2.358l-2.3 2.874a3 3 0 0 1-4.685 0ZM17 16a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H17Z"
+                                                clip-rule="evenodd" />
 
                                         </svg>
 
-                                        <span class="ml-3" sidebar-toggle-item="">Surat Permohonan Tempat PKL</span>
+                                        <span class="ml-3 text-green-800">Surat Permohonan Tempat
+                                            PKL</span>
 
                                     </a>
                                 </li>
@@ -346,22 +339,26 @@
                             </svg>
                         </span>
                         <h2 class="font-medium leading-tight">Tanggapan dari DU/DI</h3>
-                            <p class="text-sm">Upload surat </p>
+                            <p class="text-sm pt-2">Upload surat </p>
+                            <!-- modal upload  -->
+                            <button x-data @click="$dispatch('open-modal',{name:'ual'})"
+                                wire:click="$dispatch('open-ual', { id: {{ $item->id }} })"
+                                type="button"
+                                class="inline-flex mt-3 items-center rounded-lg bg-green-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                <svg class="h-4 w-4" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    fill="currentColor" viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd"
+                                        d="M11.403 5H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6.403a3.01 3.01 0 0 1-1.743-1.612l-3.025 3.025A3 3 0 1 1 9.99 9.768l3.025-3.025A3.01 3.01 0 0 1 11.403 5Z"
+                                        clip-rule="evenodd" />
+                                    <path fill-rule="evenodd"
+                                        d="M13.232 4a1 1 0 0 1 1-1H20a1 1 0 0 1 1 1v5.768a1 1 0 1 1-2 0V6.414l-6.182 6.182a1 1 0 0 1-1.414-1.414L17.586 5h-3.354a1 1 0 0 1-1-1Z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                Upload Surat Tanggapan
+                            </button>
 
-                            {{-- form upload surat balasan --}}
-                            <div class="flex items-center justify-center w-full">
-                                <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                        <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
-                                        </svg>
-                                        <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
-                                        <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
-                                    </div>
-                                    <input id="dropzone-file" type="file" class="hidden" />
-                                </label>
-                            </div>
-                            {{-- form upload surat balasan --}}
+
                     </li>
                     <li class="mb-10 ms-6">
                         @if ($item->status == 'process' || $item->status == 'accepted' || $item->status == 'rejected')
@@ -369,15 +366,17 @@
                             class="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -start-4 ring-4 ring-gray-400 dark:ring-gray-900 dark:bg-green-900">
                             <svg class="w-3.5 h-3.5 text-green-500 dark:text-green-400" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5" />
+                                <path stroke="currentColor" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2"
+                                    d="M1 5.917 5.724 10.5 15 1.5" />
                             </svg>
                         </span>
                         @else
                         <span
                             class="absolute flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full -start-4 ring-4 ring-gray-400 dark:ring-gray-900 dark:bg-gray-700">
                             <svg class="w-3.5 h-3.5 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
+                                xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                viewBox="0 0 20 16">
                                 <path
                                     d="M18 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2ZM6.5 3a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3.014 13.021l.157-.625A3.427 3.427 0 0 1 6.5 9.571a3.426 3.426 0 0 1 3.322 2.805l.159.622-6.967.023ZM16 12h-3a1 1 0 0 1 0-2h3a1 1 0 0 1 0 2Zm0-3h-3a1 1 0 1 1 0-2h3a1 1 0 1 1 0 2Zm0-3h-3a1 1 0 1 1 0-2h3a1 1 0 1 1 0 2Z" />
                             </svg>
@@ -392,18 +391,20 @@
                             class="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -start-4 ring-4 ring-gray-400 dark:ring-gray-900 dark:bg-green-900">
                             <svg class="w-3.5 h-3.5 text-green-500 dark:text-green-400" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5" />
+                                <path stroke="currentColor" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2"
+                                    d="M1 5.917 5.724 10.5 15 1.5" />
                             </svg>
                         </span>
                         @elseif ($item->status == 'rejected')
                         <span
                             class="absolute flex items-center justify-center w-8 h-8 bg-red-300 rounded-full -start-4 ring-4 ring-gray-400 dark:ring-gray-900 dark:bg-red-900">
                             <svg class="w-3.5 h-3.5 text-red-600 dark:text-red-400" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18 17.94 6M18 18 6.06 6" />
                             </svg>
 
                         </span>
@@ -411,7 +412,8 @@
                         <span
                             class="absolute flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full -start-4 ring-4 ring-gray-400 dark:ring-gray-900 dark:bg-gray-700">
                             <svg class="w-3.5 h-3.5 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
+                                xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                viewBox="0 0 18 20">
                                 <path
                                     d="M16 1h-3.278A1.992 1.992 0 0 0 11 0H7a1.993 1.993 0 0 0-1.722 1H2a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2ZM7 2h4v3H7V2Zm5.7 8.289-3.975 3.857a1 1 0 0 1-1.393 0L5.3 12.182a1.002 1.002 0 1 1 1.4-1.436l1.328 1.289 3.28-3.181a1 1 0 1 1 1.392 1.435Z" />
                             </svg>
@@ -433,7 +435,8 @@
                 </ol>
                 @if ($item->status == 'rejected')
                 <div class="mt-4">
-                    <button type="button" wire:click="$dispatch('relist-request', { id: {{ $item->id }} })"
+                    <button type="button"
+                        wire:click="$dispatch('relist-request', { id: {{ $item->id }} })"
                         class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         Ulangi Permohonan
                     </button>
@@ -444,23 +447,21 @@
         @if ($item->status == 'accepted')
         <div
             class="max-w-full mt-5 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <h5 class="mb-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Informasi PKL</h5>
+            <h5 class="mb-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Informasi PKL
+            </h5>
             <p class="font-semibold text-gray-900 dark:text-white">Jam Kerja : <span
-                    class="font-normal">{{ \Carbon\Carbon::parse($item->industry->entry_time)->format('H:i') }} -
+                    class="font-normal">{{ \Carbon\Carbon::parse($item->industry->entry_time)->format('H:i') }}
+                    -
                     {{ \Carbon\Carbon::parse($item->industry->exit_time)->format('H:i') }}</span> </p>
             <p class="font-semibold text-gray-900 dark:text-white">Guru Pendamping : <span
                     class="font-normal">{{ $request->first()->teacher->user->name }}</span> </p>
             <p class="font-semibold text-gray-900 dark:text-white">Telepon Guru Pendamping : <span
-                    class="font-normal">{{ $request->first()->teacher->phone  }}</span> </p>
+                    class="font-normal">{{ $request->first()->teacher->phone }}</span> </p>
         </div>
         @endif
         @endforeach
 
     </div>
-
-
-
-
     @endif
     <x-modal name="request" title="Ajukan PKL" height="h-[380px]">
         <x-slot:body>
@@ -502,13 +503,12 @@
                         </td>
                     </tr>
                 </table>
-
-
                 @endif
 
                 <div class="flex mt-2 pt-2 pb-2">
                     <div class="flex h-5 items-center">
-                        <input id="helper-checkbox" aria-describedby="helper-checkbox-text" type="checkbox" value=""
+                        <input id="helper-checkbox" aria-describedby="helper-checkbox-text" type="checkbox"
+                            value=""
                             class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                             required>
                     </div>
@@ -523,8 +523,8 @@
                 <button type="submit"
                     class="mb-2 me-2 mt-3 flex rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                     <span class="mr-1">Ajukan</span>
-                    <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                        fill="currentColor" viewBox="0 0 24 24">
+                    <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                        height="24" fill="currentColor" viewBox="0 0 24 24">
                         <path fill-rule="evenodd"
                             d="M11.403 5H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6.403a3.01 3.01 0 0 1-1.743-1.612l-3.025 3.025A3 3 0 1 1 9.99 9.768l3.025-3.025A3.01 3.01 0 0 1 11.403 5Z"
                             clip-rule="evenodd" />
@@ -536,6 +536,32 @@
 
 
 
+            </form>
+            </x-slot>
+    </x-modal>
+
+    <x-modal name="ual" title="Upload Surat Balasan" height="h-[380px]">
+        <x-slot:body>
+            <form wire:submit.prevent="upload_acceptence_letter" class="max-w-md mx-auto mt-4">
+                <!-- <div class="mb-5">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keterangan </label>
+                    <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option>Diterima</option>
+                        <option>Ditolak</option>
+                    </select>
+                </div> -->
+                <div class="mb-5">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload Surat Balasan</label>
+                    <input
+                        class="block w-full  text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                        aria-describedby="acceptence_letter" wire:model="acceptence_letter" type="file">
+                </div>
+                <div wire:loading wire:target="acceptence_letter">Uploading...</div>
+                <div class="mb-5">
+                    <button type="submit"
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Unggah</button>
+                </div>
+                <span class=" text-red-500 italic">@error('letter') <span class="error">{{ $message }}</span> @enderror</span>
             </form>
             </x-slot>
     </x-modal>
@@ -721,7 +747,9 @@
                                             class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             @if ($requestItem->user->students->isNotEmpty())
                                             @foreach ($requestItem->user->students as $student)
-                                            {{ $student->group }}@if (!$loop->last), @endif
+                                            {{ $student->group }}@if (!$loop->last)
+                                            ,
+                                            @endif
                                             @endforeach
                                             @else
                                             -
@@ -731,7 +759,9 @@
                                             class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             @if ($requestItem->user->students->isNotEmpty())
                                             @foreach ($requestItem->user->students as $student)
-                                            {{ $student->major->abbreviation }}@if (!$loop->last), @endif
+                                            {{ $student->major->abbreviation }}@if (!$loop->last)
+                                            ,
+                                            @endif
                                             @endforeach
                                             @else
                                             -
@@ -762,19 +792,23 @@
                                             class="p-4 text-base font-normal text-gray-900 whitespace-nowrap dark:text-white">
                                             @if ($requestItem->status == 'process')
                                             <div class="flex items-center">
-                                                <div class="h-2.5 w-2.5 rounded-full bg-yellow-300 mr-2"></div> Proses
+                                                <div class="h-2.5 w-2.5 rounded-full bg-yellow-300 mr-2"></div>
+                                                Proses
                                             </div>
                                             @elseif ($requestItem->status == 'accepted')
                                             <div class="flex items-center">
-                                                <div class="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div> Diterima
+                                                <div class="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div>
+                                                Diterima
                                             </div>
                                             @elseif ($requestItem->status == 'rejected')
                                             <div class="flex items-center">
-                                                <div class="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div> Ditolak
+                                                <div class="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div>
+                                                Ditolak
                                             </div>
                                             @else
                                             <div class="flex items-center">
-                                                <div class="h-2.5 w-2.5 rounded-full bg-gray-400 mr-2"></div> Pending
+                                                <div class="h-2.5 w-2.5 rounded-full bg-gray-400 mr-2"></div>
+                                                Pending
                                             </div>
                                             @endif
 
@@ -853,7 +887,7 @@
             <x-modal name="process-request" title="Proses Pengajuan" height="h-[620px]">
                 <x-slot:body>
                     <form wire:submit.prevent="accept" class="p-4 md:p-5">
-                        @if(!empty($selectedRequest))
+                        @if (!empty($selectedRequest))
                         <h5 class="font-semibold text-xl text-gray-900 dark:text-white">Data Industri</h5>
 
                         <p class="font-semibold text-gray-900 dark:text-white">Nama Industri : <span
@@ -880,7 +914,7 @@
                                 class="font-normal">{{ $selectedRequest->user->students->first()->major->name }}</span>
                         </p>
                         <p class="font-semibold text-gray-900 dark:text-white">Gender : <span class="font-normal">
-                                @if ($selectedRequest->user->students->first()->gender == 'male' )
+                                @if ($selectedRequest->user->students->first()->gender == 'male')
                                 Laki-laki
                                 @else
                                 Perempuan
@@ -897,12 +931,11 @@
                             @if ($selectedRequest->status == 'rejected')
                             @else
                             <div class="col-span-2">
-                                <label for="teacher" class="block mb-2 text-sm font-medium
-                                                @if ($errors->has('teacher'))
-                                                    text-red-700 dark:text-red-500
+                                <label for="teacher"
+                                    class="block mb-2 text-sm font-medium
+                                                @if ($errors->has('teacher')) text-red-700 dark:text-red-500
                                                 @else
-                                                    text-gray-900 dark:text-white
-                                                @endif">
+                                                    text-gray-900 dark:text-white @endif">
                                     Guru pendamping
                                 </label>
                                 <select id="teacher" wire:model.live="teacher"
@@ -914,9 +947,10 @@
                                     </option>
                                     @endforeach
                                 </select>
-                                @error("teacher")
-                                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops!
-                                    </span>{{$message}}</p>
+                                @error('teacher')
+                                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span
+                                        class="font-medium">Oops!
+                                    </span>{{ $message }}</p>
                                 @enderror
                             </div>
                             @endif
@@ -1106,7 +1140,9 @@
                                             class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             @if ($requestItem->user->students->isNotEmpty())
                                             @foreach ($requestItem->user->students as $student)
-                                            {{ $student->group }}@if (!$loop->last), @endif
+                                            {{ $student->group }}@if (!$loop->last)
+                                            ,
+                                            @endif
                                             @endforeach
                                             @else
                                             -
@@ -1116,7 +1152,9 @@
                                             class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             @if ($requestItem->user->students->isNotEmpty())
                                             @foreach ($requestItem->user->students as $student)
-                                            {{ $student->major->abbreviation }}@if (!$loop->last), @endif
+                                            {{ $student->major->abbreviation }}@if (!$loop->last)
+                                            ,
+                                            @endif
                                             @endforeach
                                             @else
                                             -
