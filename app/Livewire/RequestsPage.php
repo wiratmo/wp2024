@@ -10,11 +10,12 @@ use Livewire\Attributes\On;
 use Livewire\WithPagination;
 use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Auth;
+use Livewire\WithFileUploads;
 
 #[Layout('layouts.app')]
 class RequestsPage extends Component
 {
-    use WithPagination;
+    use WithPagination, WithFileUploads;
 
     public $request;
     public $teacher;
@@ -22,6 +23,8 @@ class RequestsPage extends Component
     public $selectedIndustry;
     public $selectedRequest;
     public $requestId;
+    public $response_doc;
+    public $response_status;
 
     public function request_pkl()
     {
@@ -36,6 +39,24 @@ class RequestsPage extends Component
         flash()->addSuccess('Pengajuan berhasil diajukan.');
     }
 
+
+    public function save(){
+
+        $this->validate([
+            'response_doc' => 'mimes:png,jpg,pdf|max:1024|required',
+        ]);
+        $this->response_doc->storeAs('public/response_docs', $this->response_doc->hashName());
+        $_request = Request::find($this->requestId);
+        $_request->status = $this->response_status;
+        $_request->letter = $this->response_doc->hashName();
+        $_request->save();
+        $this->render();
+        $this->dispatch('close-modal');
+        flash()->addSuccess('Pengajuan berhasil diajukan. '.$this->response_status);
+    }
+
+
+
     #[On('open-request')]
     public function update($id)
     {
@@ -43,6 +64,11 @@ class RequestsPage extends Component
         $this->selectedIndustry = Industry::find($id);
     }
 
+    #[On('upload_form')]
+    public function upload_form($id)
+    {
+        $this->requestId = $id;
+    }
 
 
     // admin side
