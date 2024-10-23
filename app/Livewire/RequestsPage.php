@@ -10,6 +10,7 @@ use Livewire\Attributes\On;
 use Livewire\WithPagination;
 use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Validate;
 use Livewire\WithFileUploads;
 
 #[Layout('layouts.app')]
@@ -23,6 +24,8 @@ class RequestsPage extends Component
     public $selectedIndustry;
     public $selectedRequest;
     public $requestId;
+    #[Validate('image|max:1024')] // 1MB Max
+    public $letter;
     public $response_doc;
     public $response_status;
 
@@ -37,6 +40,24 @@ class RequestsPage extends Component
         $this->render();
         $this->dispatch('close-modal');
         flash()->addSuccess('Pengajuan berhasil diajukan.');
+    }
+
+    public function upload_acceptence_letter()
+    {
+        $this->validate([
+            'acceptence_letter' => 'image|max:1024',
+        ]);
+        $this->letter->store('acceptence_letter');
+        // $this->selectedRequest = Request::find($id);
+        // $this->selectedRequest->update([
+        //         'status' => 'process',
+        //         'letter' =>
+        //     ]);
+        $this->render();
+        $this->dispatch('close-modal');
+        flash()->addSuccess('Pengajuan berhasil diajukan.');
+        // var_dump($this->letter);
+        // die();
     }
 
 
