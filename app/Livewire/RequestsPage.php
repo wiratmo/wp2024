@@ -94,6 +94,9 @@ class RequestsPage extends Component
         // data diambil berdasarkan request pengajuan siswa
         // mengkalkulasi
 
+        // FIXME cara mengecek nilai data
+        $this->js("console.log($this->requestId)");
+
         if ($request->status == 'accepted') {
             $request->update([
                 'teacher_id' => (int)$this->teacher,
