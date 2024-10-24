@@ -45,7 +45,7 @@ class RequestsPage extends Component
     public function save(){
 
         $this->validate([
-            'response_doc' => 'mimes:png,jpg,pdf|max:1024|required',
+            'response_doc' => 'mimes:jpg,jpeg,png,bmp,webp,pdf|max:1024|required',
         ]);
         $this->response_doc->storeAs('public/response_docs', $this->response_doc->hashName());
         $_request = Request::find($this->requestId);
@@ -90,19 +90,24 @@ class RequestsPage extends Component
     public function accept()
     {
         $request = Request::find($this->requestId);
+        // TODO cek industry id saat memilihkan pembimbing
+        // data diambil berdasarkan request pengajuan siswa
+        // mengkalkulasi
+
         if ($request->status == 'accepted') {
             $request->update([
                 'teacher_id' => (int)$this->teacher,
             ]);
         }
 
-        if ($request->status == 'process') {
+        if ($request->status == 'process' || $request->status == 'accepted_unconditional' ) {
             $request->update([
                 'status' => 'accepted',
                 'teacher_id' => (int)$this->teacher,
             ]);
         }
         $this->dispatch('close-modal');
+        flash()->addSuccess('permintaan sukses');
     }
 
     public function reject()
