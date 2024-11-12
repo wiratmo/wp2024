@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DownloadFileController extends Controller
 {
     public function _permohonan()
     {
-        // $data = ['title' => 'Judul PDF', 'content' => 'Isi PDF Anda'];
-
-        // return view('pdf.permohonan');
+        $id_user = Auth::user()->id;
+        $user = User::studentSubmission($id_user);
+        // dd($user);
         $pdf = Pdf::loadView('pdf.permohonan');
 
 

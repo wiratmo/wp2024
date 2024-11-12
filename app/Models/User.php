@@ -11,6 +11,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -72,6 +73,27 @@ class User extends Authenticatable
         if ($value) {
             $query->where('name', 'like', '%' . $value . '%')->orWhere('username', 'like', '%' . $value . '%')->orWhere('email', 'like', '%' . $value . '%');
         }
+    }
+
+    public function scopeStudentSubmission($query,$id_user)
+    {
+        return $query
+                ->join('students', 'users.id', '=', 'students.user_id')
+                ->join('majors', 'majors.id', '=', 'students.major_id')
+                ->join('requests', 'requests.user_id', '=', 'users.id')
+                ->join('industries', 'industries.id', '=', 'requests.industry_id')
+                ->where('users.id','=', $id_user)
+                ->select([
+                    'users.name as user_name',
+                    'students.NIS as NIS' ,
+                    'students.NISN as NISN' ,
+                    DB::raw("concat('XII ' ,majors.acronym,' ' ,students.group) as class"),
+                    'majors.name as major_name' ,
+                    'industries.name as industry_name',
+                    'industries.leader as industry_leader',
+                    'industries.address as industry_address',
+                    ]
+                )->first();
     }
 
 }
