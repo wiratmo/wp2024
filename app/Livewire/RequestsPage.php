@@ -2,16 +2,18 @@
 
 namespace App\Livewire;
 
+use App\Models\Major;
 use App\Models\Request;
 use App\Models\Teacher;
 use Livewire\Component;
 use App\Models\Industry;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
-use Livewire\Attributes\Layout;
-use Illuminate\Support\Facades\Auth;
-use Livewire\Attributes\Validate;
 use Livewire\WithFileUploads;
+use Livewire\Attributes\Layout;
+use Livewire\Attributes\Validate;
+use App\Livewire\Forms\IndustryForm;
+use Illuminate\Support\Facades\Auth;
 
 #[Layout('layouts.app')]
 class RequestsPage extends Component
@@ -28,12 +30,15 @@ class RequestsPage extends Component
     public $response_doc;
     public $response_status;
 
+    public $search;
+    public IndustryForm $form;
+
     public function request_pkl()
     {
         Request::create([
             'user_id' => Auth::id(),
             'industry_id' => $this->industryId,
-            
+
             'status' => 'pending',
         ]);
 
@@ -137,6 +142,29 @@ class RequestsPage extends Component
         }
     }
 
+    //modal industries
+    #[On('close-modal')]
+    public function dissmiss()
+    {
+        // $this->form->reset();
+        $this->reset('industryId');
+        $this->resetValidation();
+    }
+
+    public function saveIndustries(){
+        if(!$this->industryId){
+            $this->form->save();
+            $this->dispatch('close-modal');
+            $this->render();
+            flash()->addSuccess('Industri berhasil ditambah.');
+        }else{
+            $this->form->update($this->industryId);
+            $this->dispatch('close-modal');
+            $this->render();
+            flash()->addSuccess('Industri berhasil diubah.');
+        }
+    }
+
     #[On('render-request')]
     public function render()
     {
@@ -168,6 +196,8 @@ class RequestsPage extends Component
             'requests' => Request::paginate(20),
             'teachers' => Teacher::get(),
             'teacherStudentCompanions' => $teacherStudentCompanions,
+            'majors' => Major::all(),
+
         ]);
     }
 }
