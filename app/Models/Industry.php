@@ -36,7 +36,7 @@ class Industry extends Model
 
     public function countAcceptedRequests(): int
     {
-        return $this->requests()->where('status', 'accepted')->count();
+        return $this->requests()->whereNotIn('status', ['rejected', 'relisted'])->count();
     }
 
     public function scopeSearch($query, $value)

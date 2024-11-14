@@ -33,6 +33,7 @@ class RequestsPage extends Component
         Request::create([
             'user_id' => Auth::id(),
             'industry_id' => $this->industryId,
+            
             'status' => 'pending',
         ]);
 
