@@ -35,7 +35,7 @@ Route::get('/settings', SettingsPage::class)->middleware('auth');
 Route::get('/attendances', AttendancesPage::class)->middleware('auth');
 Route::get('/journals', JournalsPage::class)->middleware('auth');
 Route::group(['middleware' => ['role:student'], 'prefix' => 'download'], function () {
-    Route::get('/permohonan', [DownloadFileController::class, '_permohonan'])->name('download-permohonan');
+    Route::post('/permohonan', [DownloadFileController::class, '_permohonan'])->name('download-permohonan');
 });
 Route::get('/download', RequestsPage::class)->middleware('auth');
 

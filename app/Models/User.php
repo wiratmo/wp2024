@@ -84,16 +84,16 @@ class User extends Authenticatable
         }
     }
 
-    public function scopeStudentSubmission($query,$id_user)
+    public function scopeStudentSubmission($query,$industriesId)
     {
         return $query
                 ->join('students', 'users.id', '=', 'students.user_id')
                 ->join('majors', 'majors.id', '=', 'students.major_id')
                 ->join('requests', 'requests.user_id', '=', 'users.id')
                 ->join('industries', 'industries.id', '=', 'requests.industry_id')
-                ->where('users.id','=', $id_user)
+                ->where('industries.id', $industriesId)
                 ->select([
-                    'users.name as user_name',
+                    'users.name as name',
                     'students.NIS as NIS' ,
                     'students.NISN as NISN' ,
                     DB::raw("concat('XII ' ,majors.acronym,' ' ,students.group) as class"),
@@ -102,7 +102,7 @@ class User extends Authenticatable
                     'industries.leader as industry_leader',
                     'industries.address as industry_address',
                     ]
-                )->first();
+                )->get();
     }
 
 }

@@ -185,7 +185,7 @@ class RequestsPage extends Component
 
         // If there are major IDs, fetch the industries related to those major IDs
         if ($majorIds->isNotEmpty()) {
-            $industries = Industry::whereIn('major_id', $majorIds)->paginate(10);
+            $industries = Industry::whereIn('major_id', $majorIds)->where("is_verify", true)->paginate(10);
         }
 
         $teacher = Auth::user()->teachers->first();

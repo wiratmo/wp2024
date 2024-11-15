@@ -10,13 +10,13 @@ use Illuminate\Support\Facades\Auth;
 
 class DownloadFileController extends Controller
 {
-    public function _permohonan()
+    public function _permohonan(Request $request)
     {
-        $id_user = Auth::user()->id;
-        $user = User::studentSubmission($id_user);
-        // dd($user);
-        $pdf = Pdf::loadView('pdf.permohonan');
+        $industryId = $request->industryId;
+        // $id_user = Auth::user()->id;
+        $user = User::studentSubmission($industryId);
 
+        $pdf = Pdf::loadView('pdf.permohonan', compact("user"));
 
         return $pdf->stream('download.pdf');
     }

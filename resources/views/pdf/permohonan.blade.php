@@ -34,9 +34,7 @@
             <tr>
                 <td style="width: 80px"></td>
                 <td colspan="4">
-                    <p>Kepada <br>Yth. Pimpinan/Kepala <br><b>Al Jadid Offset</b><br>Jl. M Supeno,
-                        Tegalgede,
-                        Karanganyar <br></p>
+                    <p>Kepada <br>Yth. Pimpinan/Kepala <br><b>{{ $user->first()->industry_leader }}</b><br>{{ $user->first()->industry_address }}<br></p>
                     <p><br>Dengan hormat,
                         <br>
                     </p>
@@ -55,13 +53,15 @@
                             <th style="width: 80px;">Kelas</th>
                             <th style="width: 150px;">Konsentrasi Keahlian</th>
                         </tr>
-                        <tr style="text-align: center;">
-                            <td>1</td>
-                            <td>GALANG KRISTANTO</td>
-                            <td>8575</td>
-                            <td>XII RPL A</td>
-                            <td>Rekayasa Perangkat Lunak</td>
-                        </tr>
+                        @foreach ($user as $item)
+                            <tr style="text-align: center;">
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->NIS }}</td>
+                                <td>{{ $item->class }}</td>
+                                <td>{{ $item->major_name }}</td>
+                            </tr>
+                        @endforeach
                     </table>
                     <p>Demikian permohonan yang kami buat atas peran serta dan kerjasama yang baik kami mengucapkan
                         terima kasih </p>
