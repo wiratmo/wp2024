@@ -369,6 +369,29 @@
                                 <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops! </span>{{$message}}</p>
                             @enderror
                         </div>
+                        <div class="col-span-2">
+                            <label for="exp" class="block mb-2 text-sm font-medium
+                                @if ($errors->has('form.exp'))
+                                    text-red-700 dark:text-red-500
+                                @else
+                                    text-gray-900 dark:text-white
+                                @endif">
+                                exp
+                            </label>
+                            <input type="date" wire:model.live="form.exp" id="address" rows="4" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Alamat industri..."></input>
+                            @error("form.exp")
+                                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops! </span>{{$message}}</p>
+                            @enderror
+                        </div>  
+                        <div class="mb-3">
+                            <label for="file" class="form-label">Upload File</label>
+                                <input type="file" wire:model="form.mou">
+
+                                @error('form.mou')
+                                    <span class="error">{{ $message }}</span>
+                                @enderror
+
+                            </div>
 
 
 

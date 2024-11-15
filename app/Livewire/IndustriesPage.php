@@ -10,11 +10,12 @@ use Livewire\Attributes\On;
 use Livewire\WithPagination;
 use Livewire\Attributes\Layout;
 use App\Livewire\Forms\IndustryForm;
+use Livewire\WithFileUploads;
 
 #[Layout('layouts.app')]
 class IndustriesPage extends Component
 {
-    use WithPagination;
+    use WithPagination,WithFileUploads;
     public $industryId;
     public $deleteId;
     public $search;
@@ -48,6 +49,7 @@ class IndustriesPage extends Component
             'entry_time' => $industry->entry_time,
             'exit_time' => $industry->exit_time,
             'major_id' => $industry->major_id,
+            'exp' => $industry->date_expired,
         ]);
 
     }
