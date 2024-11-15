@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Livewire\Form;
 use App\Models\Industry;
 use Livewire\Attributes\Validate;
+use Illuminate\Support\Facades\Auth;
 
 class IndustryForm extends Form
 {
@@ -32,9 +33,15 @@ class IndustryForm extends Form
     public $quota;
     public $major_id;
 
+     // Properti untuk verifikasi
+    public $is_verify = 0; // Nilai default unverified
+
+
     public function save()
     {
 
+        // dd(auth()->id());
+        // exit;
         $this->validate();
         Industry::create([
             'major_id' => (int) $this->major_id,
@@ -45,6 +52,9 @@ class IndustryForm extends Form
             'quota' => $this->quota,
             'entry_time' => $this->entry_time,
             'exit_time' => $this->exit_time,
+            'user_id' => Auth::id(),
+            'is_verify' => $this->is_verify,
+
         ]);
         $this->reset();
 
@@ -64,6 +74,8 @@ class IndustryForm extends Form
             'quota' => $this->quota,
             'entry_time' => $this->entry_time,
             'exit_time' => $this->exit_time,
+            'user_id' => Auth::id(),
+            'is_verify' => $this->is_verify,
         ]);
 
         $this->reset();
