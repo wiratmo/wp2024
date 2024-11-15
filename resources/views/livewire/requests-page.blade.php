@@ -311,6 +311,7 @@
                 </div>
             </div>
             @foreach ($request as $item)
+            
                 <div class="p-4 pt-0">
                     <div class="grid gap-4 sm:grid-cols-1 lg:grid-cols-2 sm:gap-4 ">
                         <div
@@ -382,12 +383,15 @@
                             class="max-w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                             <h5 class="mb-5 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Progress
                                 permohonan
+                                
                             </h5>
                             <ol
                                 class="relative ml-4 text-gray-500 border-gray-200 border-s dark:border-gray-700 dark:text-gray-400">
                                 <li class="mb-10 ms-6">
-
-                                    @if ($item->industry->created_at->addDays(5) <= \Carbon\Carbon::now())
+                                    <!-- 
+                                        TODO yang tanggal yang diambil deri request
+                                    -->
+                                    @if ($item->created_at->addDays(5) <= \Carbon\Carbon::now())
                                     <span
                                     class="absolute flex items-center justify-center w-8 h-8 bg-green-600 rounded-full -start-4 ring-4 ring-green-600 dark:ring-green-600 dark:bg-green-900">
                                         <svg class="w-3.5 h-3.5 text-green-100 dark:text-green-400" aria-hidden="true"
@@ -438,7 +442,7 @@
 
                                 </li>
                                 <li class="mb-10 ms-6">
-                                    @if ($item->status == 'pending' || $item->industry->created_at->addDays(5) > \Carbon\Carbon::now())
+                                    @if ($item->status == 'pending' || $item->created_at->addDays(5) > \Carbon\Carbon::now())
                                         <span
                                             class="absolute flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full -start-4 ring-4 ring-gray-400 dark:ring-gray-900 dark:bg-gray-700">
                                             <svg class="w-3.5 h-3.5 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -450,7 +454,7 @@
                                             </svg>
 
                                         </span>
-                                    @elseif ($item->status == 'process' && $item->industry->created_at->addDays(5) <= \Carbon\Carbon::now())
+                                    @elseif ($item->status == 'process' && $item->created_at->addDays(5) <= \Carbon\Carbon::now())
                                         <span
                                             class="absolute flex items-center justify-center w-8 h-8 bg-orange-600 rounded-full -start-4 ring-4 ring-orange-600 dark:ring-orange-600 dark:bg-orange-900">
                                             <svg class="w-5 h-5 text-white dark:text-white" aria-hidden="true"
@@ -462,7 +466,7 @@
                                             </svg>
 
                                         </span>
-                                    @elseif (($item->status == 'accepted' && $item->industry->created_at->addDays(5) <= \Carbon\Carbon::now()) || $item->status == 'accepted_unconditional')
+                                    @elseif (($item->status == 'accepted' && $item->created_at->addDays(5) <= \Carbon\Carbon::now()) || $item->status == 'accepted_unconditional')
 
                                         <span
                                             class="absolute flex items-center justify-center w-8 h-8 bg-green-600 rounded-full -start-4 ring-4 ring-green-600 dark:ring-green-600 dark:bg-green-900">
@@ -490,7 +494,7 @@
                                         <p class="pb-2 text-sm text-gray-800">Upload surat </p>
 
                                         {{-- bagian upload --}}
-                                        @if ($item->status != 'pending' && $item->industry->created_at->addDays(5) <= \Carbon\Carbon::now())
+                                        @if ($item->status != 'pending' && $item->created_at->addDays(5) <= \Carbon\Carbon::now())
                                         <button x-data @click="$dispatch('open-modal',{name:'file_upload'})"
                                             wire:click="$dispatch('upload_form', { id: {{ $item->id }} })"
                                             type="button"
@@ -560,7 +564,7 @@
                                         </x-modal>
                                 </li>
                                 <li class="mb-10 ms-6">
-                                    @if ($item->status == 'accepted' && $item->industry->created_at->addDays(5) <= \Carbon\Carbon::now())
+                                    @if ($item->status == 'accepted' && $item->created_at->addDays(5) <= \Carbon\Carbon::now())
                                         <span
                                             class="absolute flex items-center justify-center w-8 h-8 bg-green-600 rounded-full -start-4 ring-4 ring-green-600 dark:ring-green-600 dark:bg-green-900">
                                             <svg class="w-3.5 h-3.5 text-green-100 dark:text-green-400" aria-hidden="true"
@@ -570,7 +574,7 @@
                                                     d="M1 5.917 5.724 10.5 15 1.5" />
                                             </svg>
                                         </span>
-                                    @elseif ($item->status == 'rejected' && $item->industry->created_at->addDays(5) <= \Carbon\Carbon::now())
+                                    @elseif ($item->status == 'rejected' && $item->created_at->addDays(5) <= \Carbon\Carbon::now())
                                         <span
                                             class="absolute flex items-center justify-center w-8 h-8 bg-red-800 rounded-full -start-4 ring-4 ring-red-800 dark:ring-gray-900 dark:bg-red-900">
                                             <svg class="w-3.5 h-3.5 text-white dark:text-gray-400 font-bold"
@@ -597,7 +601,7 @@
                                         <p class="text-sm">Proses verifikasi oleh admin</p>
                                 </li>
                                 <li class="ms-6">
-                                    @if ($item->status == 'accepted' && $item->industry->created_at->addDays(5) <= \Carbon\Carbon::now())
+                                    @if ($item->status == 'accepted' && $item->created_at->addDays(5) <= \Carbon\Carbon::now())
                                     <span
                                     class="absolute flex items-center justify-center w-8 h-8 bg-green-600 rounded-full -start-4 ring-4 ring-green-600 dark:ring-green-600 dark:bg-green-900">
                                     <svg class="w-3.5 h-3.5 text-green-100 dark:text-green-400" aria-hidden="true"
@@ -607,7 +611,7 @@
                                             d="M1 5.917 5.724 10.5 15 1.5" />
                                     </svg>
                                 </span>
-                                    @elseif ($item->status == 'rejected' && $item->industry->created_at->addDays(5) <= \Carbon\Carbon::now())
+                                    @elseif ($item->status == 'rejected' && $item->created_at->addDays(5) <= \Carbon\Carbon::now())
                                         <span
                                             class="absolute flex items-center justify-center w-8 h-8 bg-red-800 rounded-full -start-4 ring-4 ring-red-800 dark:ring-gray-900 dark:bg-red-900">
                                             <svg class="w-3.5 h-3.5 text-white dark:text-gray-400 font-bold"
@@ -632,8 +636,8 @@
                                     @endif
                                     <h2 class="font-medium leading-tight">Konfirmasi</h3>
                                         <p class="text-sm">
-                                            @if ($item->status !== 'pending' && $item->status !== 'process' && $item->status !== 'accepted_unconditional' && $item->industry->created_at->addDays(5) <= \Carbon\Carbon::now())
-                                                @if ($item->status == 'accepted' && $item->industry->created_at->addDays(5) <= \Carbon\Carbon::now())
+                                            @if ($item->status !== 'pending' && $item->status !== 'process' && $item->status !== 'accepted_unconditional' && $item->created_at->addDays(5) <= \Carbon\Carbon::now())
+                                                @if ($item->status == 'accepted' && $item->created_at->addDays(5) <= \Carbon\Carbon::now())
                                                     <span class="text-green-500">Diterima</span>
                                                 @else
                                                     <span class="text-red-600">Ditolak</span>
@@ -644,7 +648,7 @@
                                         </p>
                                 </li>
                             </ol>
-                            @if ($item->status == 'rejected' && !$item->industry->created_at->addDays(5) <= \Carbon\Carbon::now())
+                            @if ($item->status == 'rejected' && !$item->created_at->addDays(5) <= \Carbon\Carbon::now())
                                 <div class="mt-4">
                                     <button type="button"
                                         wire:click="$dispatch('relist-request', { id: {{ $item->id }} })"
