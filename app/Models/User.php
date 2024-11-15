@@ -3,19 +3,23 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Role;
 use App\Models\Request;
 use App\Models\Student;
 use App\Models\Teacher;
+use App\Models\detailRole;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Facades\DB;
+
 
 class User extends Authenticatable
 {
-    use HasFactory, HasRoles, Notifiable;
+    use HasFactory, HasRoles, Notifiable,HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -68,6 +72,11 @@ class User extends Authenticatable
         return $this->hasMany(Teacher::class);
     }
 
+    public function details(): HasMany
+    {
+        return $this->hasMany(DetailRole::class, 'user_id');
+    }
+
     public function scopeSearch($query, $value)
     {
         if ($value) {
@@ -75,16 +84,16 @@ class User extends Authenticatable
         }
     }
 
-    public function scopeStudentSubmission($query,$id_user)
+    public function scopeStudentSubmission($query,$industriesId)
     {
         return $query
                 ->join('students', 'users.id', '=', 'students.user_id')
                 ->join('majors', 'majors.id', '=', 'students.major_id')
                 ->join('requests', 'requests.user_id', '=', 'users.id')
                 ->join('industries', 'industries.id', '=', 'requests.industry_id')
-                ->where('users.id','=', $id_user)
+                ->where('industries.id', $industriesId)
                 ->select([
-                    'users.name as user_name',
+                    'users.name as name',
                     'students.NIS as NIS' ,
                     'students.NISN as NISN' ,
                     DB::raw("concat('XII ' ,majors.acronym,' ' ,students.group) as class"),
@@ -93,7 +102,7 @@ class User extends Authenticatable
                     'industries.leader as industry_leader',
                     'industries.address as industry_address',
                     ]
-                )->first();
+                )->get();
     }
 
 }

@@ -2,16 +2,19 @@
 
 namespace App\Livewire;
 
+use App\Models\Major;
+
 use App\Models\Request;
 use App\Models\Teacher;
 use Livewire\Component;
 use App\Models\Industry;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
-use Livewire\Attributes\Layout;
-use Illuminate\Support\Facades\Auth;
-use Livewire\Attributes\Validate;
 use Livewire\WithFileUploads;
+use Livewire\Attributes\Layout;
+use App\Livewire\Forms\IndustryForm;
+
+use Illuminate\Support\Facades\Auth;
 
 #[Layout('layouts.app')]
 class RequestsPage extends Component
@@ -28,14 +31,17 @@ class RequestsPage extends Component
     public $response_doc;
     public $response_status;
 
+    public $search;
+    public IndustryForm $form;
+
     public function request_pkl()
     {
         Request::create([
             'user_id' => Auth::id(),
             'industry_id' => $this->industryId,
+
             'status' => 'pending',
         ]);
-
         $this->render();
         $this->dispatch('close-modal');
         flash()->addSuccess('Pengajuan berhasil diajukan.');
@@ -85,6 +91,7 @@ class RequestsPage extends Component
                 'status' => 'process',
             ]);
         }
+
     }
 
     public function accept()
@@ -96,17 +103,22 @@ class RequestsPage extends Component
 
         // FIXME cara mengecek nilai data
         $this->js("console.log($this->requestId)");
+        if ($this->teacher != 0 || $this->teacher != NULL) {
+            if ($request->status == 'accepted') {
+                $request->update([
+                    'teacher_id' => (int)$this->teacher,
+                ]);
+            }
 
-        if ($request->status == 'accepted') {
+            if ($request->status == 'process' || $request->status == 'accepted_unconditional' ) {
+                $request->update([
+                    'status' => 'accepted',
+                    'teacher_id' => (int)$this->teacher,
+                ]);
+            }
+        } elseif ($request->status == 'process' || $request->status == 'accepted_unconditional' && !$this->teacher) {
             $request->update([
-                'teacher_id' => (int)$this->teacher,
-            ]);
-        }
-
-        if ($request->status == 'process' || $request->status == 'accepted_unconditional' ) {
-            $request->update([
-                'status' => 'accepted',
-                'teacher_id' => (int)$this->teacher,
+                'status' => 'accepted'
             ]);
         }
         $this->dispatch('close-modal');
@@ -136,6 +148,29 @@ class RequestsPage extends Component
         }
     }
 
+    //modal industries
+    #[On('close-modal')]
+    public function dissmiss()
+    {
+        // $this->form->reset();
+        $this->reset('industryId');
+        $this->resetValidation();
+    }
+
+    public function saveIndustries(){
+        if(!$this->industryId){
+            $this->form->save();
+            $this->dispatch('close-modal');
+            $this->render();
+            flash()->addSuccess('Industri berhasil ditambah.');
+        }else{
+            $this->form->update($this->industryId);
+            $this->dispatch('close-modal');
+            $this->render();
+            flash()->addSuccess('Industri berhasil diubah.');
+        }
+    }
+
     #[On('render-request')]
     public function render()
     {
@@ -150,10 +185,11 @@ class RequestsPage extends Component
 
         // If there are major IDs, fetch the industries related to those major IDs
         if ($majorIds->isNotEmpty()) {
-            $industries = Industry::whereIn('major_id', $majorIds)->paginate(10);
+            $industries = Industry::whereIn('major_id', $majorIds)->where("is_verify", true)->paginate(10);
         }
 
         $teacher = Auth::user()->teachers->first();
+
 
         if ($teacher) {
             $teacherStudentCompanions = Request::where('teacher_id', $teacher->id)->paginate(10);
@@ -167,6 +203,8 @@ class RequestsPage extends Component
             'requests' => Request::paginate(20),
             'teachers' => Teacher::get(),
             'teacherStudentCompanions' => $teacherStudentCompanions,
+            'majors' => Major::all(),
+
         ]);
     }
 }

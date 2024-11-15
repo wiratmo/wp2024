@@ -22,6 +22,10 @@ class Industry extends Model
         'status',
         'entry_time',
         'exit_time',
+        'user_id',
+        'is_verify',
+        'mou',
+        'date_expired',
     ];
 
     public function requests(): HasMany
@@ -36,7 +40,7 @@ class Industry extends Model
 
     public function countAcceptedRequests(): int
     {
-        return $this->requests()->where('status', 'accepted')->count();
+        return $this->requests()->whereNotIn('status', ['rejected', 'relisted'])->count();
     }
 
     public function scopeSearch($query, $value)

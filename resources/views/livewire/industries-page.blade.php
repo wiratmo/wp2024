@@ -98,6 +98,9 @@
                                         Status
                                     </th>
                                     <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                                        Verifikasi
+                                    </th>
+                                    <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
                                         Actions
                                     </th>
                                 </tr>
@@ -129,6 +132,20 @@
                                             <td class="whitespace-nowrap p-4 text-base font-normal text-gray-900 dark:text-white">
                                                 <div class="flex items-center">
                                                     <div class="mr-2 h-2.5 w-2.5 rounded-full bg-green-400"></div> Tersedia
+                                                </div>
+                                            </td>
+                                        @endif
+
+                                        @if ($industry->is_verify == 0)
+                                        <td class="whitespace-nowrap p-4 text-base font-normal text-gray-900 dark:text-white">
+                                            <div class="flex items-center">
+                                                <div class="mr-2 h-2.5 w-2.5 rounded-full bg-red-500"></div> Belum Verifikasi
+                                            </div>
+                                        </td>
+                                        @else
+                                            <td class="whitespace-nowrap p-4 text-base font-normal text-gray-900 dark:text-white">
+                                                <div class="flex items-center">
+                                                    <div class="mr-2 h-2.5 w-2.5 rounded-full bg-green-400"></div> Terverifikasi
                                                 </div>
                                             </td>
                                         @endif
@@ -260,6 +277,28 @@
                                 <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops! </span>{{$message}}</p>
                             @enderror
                         </div>
+
+                        <div class="col-span-2">
+                            <label for="major" class="block mb-2 text-sm font-medium
+                                @if ($errors->has('form.major_id'))
+                                    text-red-700 dark:text-red-500
+                                @else
+                                    text-gray-900 dark:text-white
+                                @endif">
+                                Verifikasi
+                            </label>
+                            <select id="is_verify" wire:model.live="form.is_verify" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                @foreach (['1' => 'Verified', '0' => 'Unverified'] as $value => $label)
+                                    <option value="{{ $value }}" @if ($form->is_verify == $value) selected @endif>
+                                        {{ $label }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error("form.is_verify")
+                                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops! </span>{{$message}}</p>
+                            @enderror
+                        </div>
+
                         <div class="col-span-1">
                             <label for="entry_time" class="block mb-2 text-sm font-medium
                                 @if ($errors->has('form.entry_time'))
@@ -330,6 +369,29 @@
                                 <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops! </span>{{$message}}</p>
                             @enderror
                         </div>
+                        <div class="col-span-2">
+                            <label for="exp" class="block mb-2 text-sm font-medium
+                                @if ($errors->has('form.exp'))
+                                    text-red-700 dark:text-red-500
+                                @else
+                                    text-gray-900 dark:text-white
+                                @endif">
+                                exp
+                            </label>
+                            <input type="date" wire:model.live="form.exp" id="address" rows="4" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Alamat industri..."></input>
+                            @error("form.exp")
+                                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops! </span>{{$message}}</p>
+                            @enderror
+                        </div>  
+                        <div class="mb-3">
+                            <label for="file" class="form-label">Upload File</label>
+                                <input type="file" wire:model="form.mou">
+
+                                @error('form.mou')
+                                    <span class="error">{{ $message }}</span>
+                                @enderror
+
+                            </div>
 
 
 

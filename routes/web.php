@@ -24,13 +24,18 @@ Route::group(['middleware' => ['role:admin|superadmin']], function () {
     Route::get('/industries', IndustriesPage::class)->middleware('auth');
 });
 
+    Route::get('/students', StudentsPage::class)->middleware('auth');
+    Route::get('/teachers', TeachersPage::class)->middleware('auth');
+    Route::get('/majors', MajorsPage::class)->middleware('auth');
+    Route::get('/industries', IndustriesPage::class)->middleware('auth');
+
 
 Route::get('/requests', RequestsPage::class)->middleware('auth');
 Route::get('/settings', SettingsPage::class)->middleware('auth');
 Route::get('/attendances', AttendancesPage::class)->middleware('auth');
 Route::get('/journals', JournalsPage::class)->middleware('auth');
 Route::group(['middleware' => ['role:student'], 'prefix' => 'download'], function () {
-    Route::get('/permohonan', [DownloadFileController::class, '_permohonan'])->name('download-permohonan');
+    Route::post('/permohonan', [DownloadFileController::class, '_permohonan'])->name('download-permohonan');
 });
 Route::get('/download', RequestsPage::class)->middleware('auth');
 

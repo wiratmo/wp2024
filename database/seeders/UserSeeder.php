@@ -2,13 +2,15 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use App\Models\Major;
 use App\Models\Student;
 use App\Models\Teacher;
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\detailRole;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class UserSeeder extends Seeder
 {
@@ -90,7 +92,7 @@ class UserSeeder extends Seeder
         ]);
         $student->assignRole('student');
 
-        // teacher
+        // teacher + k3
         $teacher = User::factory()->create([
             'name' => 'agung wiratmo',
             'username' => 'teacher1',
@@ -105,6 +107,20 @@ class UserSeeder extends Seeder
             'NIP' => "199408232020121003",
         ]);
         $teacher->assignRole('teacher');
+
+        $role = Role::where('name', 'k3')->first();
+        if ($role) {
+            $teacher->assignRole('teacher');
+            detailRole::create([
+                'role_id' => $role->id,
+                'user_id' => $teacher->id,
+            ]);
+        } else {
+            echo "Role k3 tidak ditemukan!";
+        }
+
+
+
         // teacher
         $teacher = User::factory()->create([
             'name' => 'afif nuruudin',
