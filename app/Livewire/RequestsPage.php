@@ -3,7 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Major;
-use Carbon\Carbon;
+
 use App\Models\Request;
 use App\Models\Teacher;
 use Livewire\Component;
@@ -11,11 +11,9 @@ use App\Models\Industry;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
-use Livewire\WithFileUploads;
 use Livewire\Attributes\Layout;
-use Livewire\Attributes\Validate;
 use App\Livewire\Forms\IndustryForm;
-use Livewire\Attributes\Validate;
+
 use Illuminate\Support\Facades\Auth;
 
 #[Layout('layouts.app')]
