@@ -1,3 +1,4 @@
+document.addEventListener('livewire:navigated', () => {
 const sidebar = document.getElementById('sidebar');
 
 if (sidebar) {
@@ -26,3 +27,4 @@ if (sidebar) {
         toggleSidebarMobile(sidebar, sidebarBackdrop, toggleSidebarMobileHamburger, toggleSidebarMobileClose);
     });
 }
+})
