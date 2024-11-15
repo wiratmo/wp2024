@@ -2,16 +2,17 @@
 
 namespace App\Livewire;
 
+use Carbon\Carbon;
 use App\Models\Request;
 use App\Models\Teacher;
 use Livewire\Component;
 use App\Models\Industry;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
-use Livewire\Attributes\Layout;
-use Illuminate\Support\Facades\Auth;
-use Livewire\Attributes\Validate;
 use Livewire\WithFileUploads;
+use Livewire\Attributes\Layout;
+use Livewire\Attributes\Validate;
+use Illuminate\Support\Facades\Auth;
 
 #[Layout('layouts.app')]
 class RequestsPage extends Component
@@ -33,10 +34,9 @@ class RequestsPage extends Component
         Request::create([
             'user_id' => Auth::id(),
             'industry_id' => $this->industryId,
-            
+
             'status' => 'pending',
         ]);
-
         $this->render();
         $this->dispatch('close-modal');
         flash()->addSuccess('Pengajuan berhasil diajukan.');
@@ -86,6 +86,7 @@ class RequestsPage extends Component
                 'status' => 'process',
             ]);
         }
+
     }
 
     public function accept()
@@ -97,17 +98,22 @@ class RequestsPage extends Component
 
         // FIXME cara mengecek nilai data
         $this->js("console.log($this->requestId)");
+        if ($this->teacher != 0 || $this->teacher != NULL) {
+            if ($request->status == 'accepted') {
+                $request->update([
+                    'teacher_id' => (int)$this->teacher,
+                ]);
+            }
 
-        if ($request->status == 'accepted') {
+            if ($request->status == 'process' || $request->status == 'accepted_unconditional' ) {
+                $request->update([
+                    'status' => 'accepted',
+                    'teacher_id' => (int)$this->teacher,
+                ]);
+            }
+        } elseif ($request->status == 'process' || $request->status == 'accepted_unconditional' && !$this->teacher) {
             $request->update([
-                'teacher_id' => (int)$this->teacher,
-            ]);
-        }
-
-        if ($request->status == 'process' || $request->status == 'accepted_unconditional' ) {
-            $request->update([
-                'status' => 'accepted',
-                'teacher_id' => (int)$this->teacher,
+                'status' => 'accepted'
             ]);
         }
         $this->dispatch('close-modal');
@@ -155,6 +161,7 @@ class RequestsPage extends Component
         }
 
         $teacher = Auth::user()->teachers->first();
+
 
         if ($teacher) {
             $teacherStudentCompanions = Request::where('teacher_id', $teacher->id)->paginate(10);

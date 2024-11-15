@@ -2,8 +2,8 @@
     @hasrole('student')
         @if ($request->isEmpty())
             <div class="mt-1.5 p-4">
-                <div class="col-span-full mb-4 xl:mb-2">
-                    <nav class="mb-5 flex" aria-label="Breadcrumb">
+                <div class="mb-4 col-span-full xl:mb-2">
+                    <nav class="flex mb-5" aria-label="Breadcrumb">
                         <ol class="inline-flex items-center space-x-1 text-sm font-medium md:space-x-2">
                             <li class="inline-flex items-center">
                                 <a href="#"
@@ -19,7 +19,7 @@
                             </li>
                             <li>
                                 <div class="flex items-center">
-                                    <svg class="h-6 w-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20"
+                                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
                                             d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
@@ -32,7 +32,7 @@
                             </li>
                             <li>
                                 <div class="flex items-center">
-                                    <svg class="h-6 w-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20"
+                                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
                                             d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
@@ -48,11 +48,11 @@
                 </div>
             </div>
             <div
-                class="mt-2 border-b border-gray-200 text-center text-sm font-medium text-gray-500 dark:border-gray-700 dark:text-gray-400">
-                <ul class="-mb-px flex flex-wrap">
+                class="mt-2 text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
+                <ul class="flex flex-wrap -mb-px">
                     <li class="me-2">
                         <a href="#"
-                            class="active inline-block rounded-t-lg border-b-2 border-blue-600 p-4 text-blue-600 dark:border-blue-500 dark:text-blue-500"
+                            class="inline-block p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:border-blue-500 dark:text-blue-500"
                             aria-current="page">Semua Tempat PKL</a>
                     </li>
                 </ul>
@@ -62,53 +62,53 @@
                 <div class="overflow-x-auto">
                     <div class="inline-block min-w-full align-middle">
                         <div class="overflow-hidden shadow">
-                            <table class="min-w-full table-fixed divide-y divide-gray-200 dark:divide-gray-600">
+                            <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-600">
                                 <thead class="bg-gray-100 dark:bg-gray-700">
                                     <tr>
                                         <th scope="col"
-                                            class="p-4 text-left text-xs font-medium uppercase text-gray-500 dark:text-gray-400">
+                                            class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
                                             Nama Industri
                                         </th>
                                         <th scope="col"
-                                            class="p-4 text-left text-xs font-medium uppercase text-gray-500 dark:text-gray-400">
+                                            class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
                                             Nama Pimpinan
                                         </th>
                                         <th scope="col"
-                                            class="p-4 text-left text-xs font-medium uppercase text-gray-500 dark:text-gray-400">
+                                            class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
                                             No HP
                                         </th>
                                         <th scope="col"
-                                            class="p-4 text-left text-xs font-medium uppercase text-gray-500 dark:text-gray-400">
+                                            class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
                                             Alamat
                                         </th>
                                         <th scope="col"
-                                            class="p-4 text-left text-xs font-medium uppercase text-gray-500 dark:text-gray-400">
+                                            class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
                                             Kuota
                                         </th>
                                         <th scope="col"
-                                            class="p-4 text-left text-xs font-medium uppercase text-gray-500 dark:text-gray-400">
+                                            class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
                                             Status
                                         </th>
                                         <th scope="col"
-                                            class="p-4 text-left text-xs font-medium uppercase text-gray-500 dark:text-gray-400">
+                                            class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
                                             Actions
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody class="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-800">
+                                <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-800">
                                     @foreach ($industries as $industry)
                                         <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
 
                                             <td
-                                                class="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
+                                                class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 {{ $industry->name }}
                                             </td>
                                             <td
-                                                class="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white ">
+                                                class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white ">
                                                 {{ $industry->leader }}
                                             </td>
                                             <td
-                                                class="whitespace-nowrap p-4 text-base font-normal text-gray-900 dark:text-white">
+                                                class="p-4 text-base font-normal text-gray-900 whitespace-nowrap dark:text-white">
                                                 {{ $industry->phone }}
                                             </td>
                                             <td
@@ -116,12 +116,12 @@
                                                 {{ $industry->address }}
                                             </td>
                                             <td
-                                                class="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
+                                                class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 {{ $industry->countAcceptedRequests() }}/{{ $industry->quota }}
                                             </td>
                                             @if ($industry->countAcceptedRequests() >= $industry->quota)
                                                 <td
-                                                    class="whitespace-nowrap p-4 text-base font-normal text-gray-900 dark:text-white">
+                                                    class="p-4 text-base font-normal text-gray-900 whitespace-nowrap dark:text-white">
                                                     <div class="flex items-center">
                                                         <div class="mr-2 h-2.5 w-2.5 rounded-full bg-red-500"></div>
                                                         Terpenuhi
@@ -129,18 +129,18 @@
                                                 </td>
                                             @else
                                                 <td
-                                                    class="whitespace-nowrap p-4 text-base font-normal text-gray-900 dark:text-white">
+                                                    class="p-4 text-base font-normal text-gray-900 whitespace-nowrap dark:text-white">
                                                     <div class="flex items-center">
                                                         <div class="mr-2 h-2.5 w-2.5 rounded-full bg-green-400"></div>
                                                         Tersedia
                                                     </div>
                                                 </td>
                                             @endif
-                                            <td class="space-x-2 whitespace-nowrap p-4">
+                                            <td class="p-4 space-x-2 whitespace-nowrap">
                                                 @if ($industry->countAcceptedRequests() >= $industry->quota)
                                                     <button disabled type="button"
-                                                        class="text-white bg-gray-400 dark:bg-gray-500 cursor-not-allowed font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex">
-                                                        <svg class="h-4 w-4" aria-hidden="true"
+                                                        class="inline-flex px-3 py-2 text-sm font-medium text-center text-white bg-gray-400 rounded-lg cursor-not-allowed dark:bg-gray-500">
+                                                        <svg class="w-4 h-4" aria-hidden="true"
                                                             xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                             fill="currentColor" viewBox="0 0 24 24">
                                                             <path fill-rule="evenodd"
@@ -156,8 +156,8 @@
                                                     <button x-data @click="$dispatch('open-modal',{name:'request'})"
                                                         wire:click="$dispatch('open-request', { id: {{ $industry->id }} })"
                                                         type="button"
-                                                        class="inline-flex items-center rounded-lg bg-blue-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                                        <svg class="h-4 w-4" aria-hidden="true"
+                                                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                        <svg class="w-4 h-4" aria-hidden="true"
                                                             xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                             fill="currentColor" viewBox="0 0 24 24">
                                                             <path fill-rule="evenodd"
@@ -183,7 +183,7 @@
                 {{ $industries->links('vendor.livewire.custom') }}
             @else
                 <div
-                    class="sticky bottom-0 right-0 w-full items-center border-t border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800 sm:flex sm:justify-between">
+                    class="sticky bottom-0 right-0 items-center w-full p-4 bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-800 sm:flex sm:justify-between">
                     <span class="text-sm font-normal text-gray-500 dark:text-gray-400">Memperlihatkan
                         <span class="font-semibold text-gray-900 dark:text-white">
                             @if ($industries->total() == 0)
@@ -197,9 +197,9 @@
                     </span>
                     <div class="flex items-center space-x-3">
                         <button
-                            class="flex cursor-not-allowed rounded-lg bg-blue-400 px-3 py-2 text-center text-sm font-medium text-white dark:bg-blue-500"
+                            class="flex px-3 py-2 text-sm font-medium text-center text-white bg-blue-400 rounded-lg cursor-not-allowed dark:bg-blue-500"
                             disabled>
-                            <svg class="-ml-1 mr-1 h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
+                            <svg class="w-5 h-5 mr-1 -ml-1" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
                                     d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
@@ -208,10 +208,10 @@
                             Sebelumnya
                         </button>
                         <button
-                            class="flex cursor-not-allowed rounded-lg bg-blue-400 px-3 py-2 text-center text-sm font-medium text-white dark:bg-blue-500"
+                            class="flex px-3 py-2 text-sm font-medium text-center text-white bg-blue-400 rounded-lg cursor-not-allowed dark:bg-blue-500"
                             disabled>
                             Selanjutnya
-                            <svg class="-mr-1 ml-1 h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
+                            <svg class="w-5 h-5 ml-1 -mr-1" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
                                     d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
@@ -223,8 +223,8 @@
             @endif
         @else
             <div class="mt-1.5 p-4">
-                <div class="col-span-full mb-4 xl:mb-2">
-                    <nav class="mb-5 flex" aria-label="Breadcrumb">
+                <div class="mb-4 col-span-full xl:mb-2">
+                    <nav class="flex mb-5" aria-label="Breadcrumb">
                         <ol class="inline-flex items-center space-x-1 text-sm font-medium md:space-x-2">
                             <li class="inline-flex items-center">
                                 <a href="#"
@@ -240,7 +240,7 @@
                             </li>
                             <li>
                                 <div class="flex items-center">
-                                    <svg class="h-6 w-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20"
+                                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
                                             d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
@@ -258,15 +258,15 @@
             </div>
             @foreach ($request as $item)
                 <div class="p-4 pt-0">
-                    <div class="grid sm:grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-4 ">
+                    <div class="grid gap-4 sm:grid-cols-1 lg:grid-cols-2 sm:gap-4 ">
                         <div
-                            class="max-w-full p-6  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                            class="max-w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                             <h5 class="mb-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Data Industri
                             </h5>
                             <table class="table-auto">
                                 <tr class="align-text-top">
                                     <td>
-                                        <p class="font-semibold text-gray-900 dark:text-white w-56">Nama Industri
+                                        <p class="w-56 font-semibold text-gray-900 dark:text-white">Nama Industri
                                     </td>
                                     <td class="w-3">:</td>
                                     <td><span class="font-normal">{{ $item->industry->name }}</span> </p>
@@ -274,7 +274,7 @@
                                 </tr>
                                 <tr class="align-text-top">
                                     <td>
-                                        <p class="font-semibold text-gray-900 dark:text-white w-56">Telepon
+                                        <p class="w-56 font-semibold text-gray-900 dark:text-white">Telepon
                                     </td>
                                     <td class="w-3">:</td>
                                     <td> <span class="font-normal">{{ $item->industry->phone }}</span> </p>
@@ -282,7 +282,7 @@
                                 </tr>
                                 <tr class="align-text-top">
                                     <td>
-                                        <p class="font-semibold text-gray-900 dark:text-white w-56">Alamat
+                                        <p class="w-56 font-semibold text-gray-900 dark:text-white">Alamat
                                     </td>
                                     <td class="w-3">:</td>
                                     <td> <span class="font-normal">{{ $item->industry->address }}</span> </p>
@@ -292,7 +292,7 @@
 
                                 <tr class="align-text-top">
                                     <td>
-                                        <p class="font-semibold text-gray-900 dark:text-white w-56">Jam Kerja
+                                        <p class="w-56 font-semibold text-gray-900 dark:text-white">Jam Kerja
                                     </td>
                                     <td class="w-3">:</td>
                                     <td><span
@@ -303,7 +303,7 @@
                                 </tr>
                                 <tr class="align-text-top">
                                     <td>
-                                        <p class="font-semibold text-gray-900 dark:text-white w-56">Guru Pendamping
+                                        <p class="w-56 font-semibold text-gray-900 dark:text-white">Guru Pendamping
                                     </td>
                                     <td class="w-3">:</td>
                                     <td> <span class="font-normal">{{ $request->first()->teacher->user->name }}</span> </p>
@@ -311,7 +311,7 @@
                                 </tr>
                                 <tr class="align-text-top">
                                     <td>
-                                        <p class="font-semibold text-gray-900 dark:text-white w-56">Telp Guru Pendamping
+                                        <p class="w-56 font-semibold text-gray-900 dark:text-white">Telp Guru Pendamping
                                     </td>
                                     <td class="w-3">:</td>
                                     <td> <span class="font-normal">{{ $request->first()->teacher->phone }}</span> </p>
@@ -330,23 +330,24 @@
                                 permohonan
                             </h5>
                             <ol
-                                class="relative text-gray-500 border-s ml-4 border-gray-200 dark:border-gray-700 dark:text-gray-400">
+                                class="relative ml-4 text-gray-500 border-gray-200 border-s dark:border-gray-700 dark:text-gray-400">
                                 <li class="mb-10 ms-6">
+
+                                    @if ($item->industry->created_at->addDays(5) <= \Carbon\Carbon::now())
                                     <span
-                                        class="absolute flex items-center justify-center w-8 h-8 bg-green-600 rounded-full -start-4 ring-4 ring-green-600 dark:ring-green-600 dark:bg-green-900">
+                                    class="absolute flex items-center justify-center w-8 h-8 bg-green-600 rounded-full -start-4 ring-4 ring-green-600 dark:ring-green-600 dark:bg-green-900">
                                         <svg class="w-3.5 h-3.5 text-green-100 dark:text-green-400" aria-hidden="true"
                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                                 stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5" />
                                         </svg>
                                     </span>
-                                    <h2 class="font-medium leading-tight text-black pb-2">Pengajuan Tempat PKL</h3>
-
+                                        <h2 class="pb-2 font-medium leading-tight text-black">Pengajuan Tempat PKL</h3>
                                         <ul>
                                             <p class="text-sm text-gray-800 ">Unduh berkas pengajuan</p>
                                             <li>
                                                 <a href="{{ route('download-permohonan') }}"
-                                                    class="text-sm italic flex items-center p-2 ">
+                                                    class="flex items-center p-2 text-sm italic ">
 
                                                     <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
                                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -359,15 +360,41 @@
                                                             clip-rule="evenodd" />
                                                     </svg>
 
-                                                    <span class="ml-3 text-green-800 text-sm "
+                                                    <span class="ml-3 text-sm text-green-800 "
                                                         sidebar-toggle-item="">Surat Permohonan Tempat PKL</span>
 
                                                 </a>
                                             </li>
                                         </ul>
+                                    @else
+                                        <span class="absolute flex items-center justify-center w-8 h-8 bg-orange-600 rounded-full -start-4 ring-4 ring-orange-600 dark:ring-orange-600 dark:bg-orange-900">
+                                            <svg class="w-5 h-5 text-white dark:text-white" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                fill="currentColor" viewBox="0 0 500 500">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2" d="M184 48l144 0c4.4 0 8 3.6 8 8l0 40L176 96l0-40c0-4.4 3.6-8 8-8zm-56 8l0 40L64 96C28.7 96 0 124.7 0 160l0 96 192 0 128 0 192 0 0-96c0-35.3-28.7-64-64-64l-64 0 0-40c0-30.9-25.1-56-56-56L184 0c-30.9 0-56 25.1-56 56zM512 288l-192 0 0 32c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32l0-32L0 288 0 416c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-128z"/></svg>
+                                        </span>
+                                        <h2 class="pb-2 font-medium leading-tight text-black">Pengajuan Tempat PKL</h3>
+                                            <p class="text-sm text-gray-800 ">Sedang Diproses</p>
+                                    @endif
+
+
+
                                 </li>
                                 <li class="mb-10 ms-6">
-                                    @if ($item->status == 'process' || $item->status == 'pending')
+                                    @if ($item->status == 'pending' || $item->industry->created_at->addDays(5) > \Carbon\Carbon::now())
+                                        <span
+                                            class="absolute flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full -start-4 ring-4 ring-gray-400 dark:ring-gray-900 dark:bg-gray-700">
+                                            <svg class="w-3.5 h-3.5 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                fill="none" viewBox="0 0 24 24">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2"
+                                                    d="M5 14v7M5 4.971v9.541c5.6-5.538 8.4 2.64 14-.086v-9.54C13.4 7.61 10.6-.568 5 4.97Z" />
+                                            </svg>
+
+                                        </span>
+                                    @elseif ($item->status == 'process' && $item->industry->created_at->addDays(5) <= \Carbon\Carbon::now())
                                         <span
                                             class="absolute flex items-center justify-center w-8 h-8 bg-orange-600 rounded-full -start-4 ring-4 ring-orange-600 dark:ring-orange-600 dark:bg-orange-900">
                                             <svg class="w-5 h-5 text-white dark:text-white" aria-hidden="true"
@@ -379,7 +406,8 @@
                                             </svg>
 
                                         </span>
-                                    @elseif ($item->status == 'accepted' || $item->status == 'accepted_unconditional')
+                                    @elseif (($item->status == 'accepted' && $item->industry->created_at->addDays(5) <= \Carbon\Carbon::now()) || $item->status == 'accepted_unconditional')
+
                                         <span
                                             class="absolute flex items-center justify-center w-8 h-8 bg-green-600 rounded-full -start-4 ring-4 ring-green-600 dark:ring-green-600 dark:bg-green-900">
                                             <svg class="w-3.5 h-3.5 text-green-100 dark:text-green-400" aria-hidden="true"
@@ -402,11 +430,11 @@
 
                                         </span>
                                     @endif
-                                    <h2 class="font-medium leading-tight text-black pb-2">Tanggapan dari DU/DI</h3>
-                                        <p class="text-sm text-gray-800 pb-2">Upload surat </p>
+                                    <h2 class="pb-2 font-medium leading-tight text-black">Tanggapan dari DU/DI</h3>
+                                        <p class="pb-2 text-sm text-gray-800">Upload surat </p>
 
                                         {{-- bagian upload --}}
-
+                                        @if ($item->status != 'pending' && $item->industry->created_at->addDays(5) <= \Carbon\Carbon::now())
                                         <button x-data @click="$dispatch('open-modal',{name:'file_upload'})"
                                             wire:click="$dispatch('upload_form', { id: {{ $item->id }} })"
                                             type="button"
@@ -416,7 +444,7 @@
                                                 bg-blue-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 @endif
                                             "
                                             @disabled($item->status == 'accepted' || $item->status == 'accepted_unconditional' || $item->status == 'rejected')>
-                                            <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                                 width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                                                 <path fill-rule="evenodd"
                                                     d="M11.403 5H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6.403a3.01 3.01 0 0 1-1.743-1.612l-3.025 3.025A3 3 0 1 1 9.99 9.768l3.025-3.025A3.01 3.01 0 0 1 11.403 5Z"
@@ -427,6 +455,7 @@
                                             </svg>
                                             Upload Surat Balasan
                                         </button>
+                                        @endif
 
                                         {{-- bagian akhir --}}
 
@@ -458,7 +487,7 @@
                                                     <button type="submit"
                                                         class="mb-2 me-2 mt-3 flex rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                                         <span class="mr-1">Ajukan</span>
-                                                        <svg class="h-4 w-4" aria-hidden="true"
+                                                        <svg class="w-4 h-4" aria-hidden="true"
                                                             xmlns="http://www.w3.org/2000/svg" width="24"
                                                             height="24" fill="currentColor" viewBox="0 0 24 24">
                                                             <path fill-rule="evenodd"
@@ -475,7 +504,7 @@
                                         </x-modal>
                                 </li>
                                 <li class="mb-10 ms-6">
-                                    @if ($item->status == 'accepted')
+                                    @if ($item->status == 'accepted' && $item->industry->created_at->addDays(5) <= \Carbon\Carbon::now())
                                         <span
                                             class="absolute flex items-center justify-center w-8 h-8 bg-green-600 rounded-full -start-4 ring-4 ring-green-600 dark:ring-green-600 dark:bg-green-900">
                                             <svg class="w-3.5 h-3.5 text-green-100 dark:text-green-400" aria-hidden="true"
@@ -485,7 +514,7 @@
                                                     d="M1 5.917 5.724 10.5 15 1.5" />
                                             </svg>
                                         </span>
-                                    @elseif ($item->status == 'rejected')
+                                    @elseif ($item->status == 'rejected' && $item->industry->created_at->addDays(5) <= \Carbon\Carbon::now())
                                         <span
                                             class="absolute flex items-center justify-center w-8 h-8 bg-red-800 rounded-full -start-4 ring-4 ring-red-800 dark:ring-gray-900 dark:bg-red-900">
                                             <svg class="w-3.5 h-3.5 text-white dark:text-gray-400 font-bold"
@@ -512,7 +541,7 @@
                                         <p class="text-sm">Proses verifikasi oleh admin</p>
                                 </li>
                                 <li class="ms-6">
-                                    @if ($item->status == 'accepted')
+                                    @if ($item->status == 'accepted' && $item->industry->created_at->addDays(5) <= \Carbon\Carbon::now())
                                     <span
                                     class="absolute flex items-center justify-center w-8 h-8 bg-green-600 rounded-full -start-4 ring-4 ring-green-600 dark:ring-green-600 dark:bg-green-900">
                                     <svg class="w-3.5 h-3.5 text-green-100 dark:text-green-400" aria-hidden="true"
@@ -522,7 +551,7 @@
                                             d="M1 5.917 5.724 10.5 15 1.5" />
                                     </svg>
                                 </span>
-                                    @elseif ($item->status == 'rejected')
+                                    @elseif ($item->status == 'rejected' && $item->industry->created_at->addDays(5) <= \Carbon\Carbon::now())
                                         <span
                                             class="absolute flex items-center justify-center w-8 h-8 bg-red-800 rounded-full -start-4 ring-4 ring-red-800 dark:ring-gray-900 dark:bg-red-900">
                                             <svg class="w-3.5 h-3.5 text-white dark:text-gray-400 font-bold"
@@ -547,8 +576,8 @@
                                     @endif
                                     <h2 class="font-medium leading-tight">Konfirmasi</h3>
                                         <p class="text-sm">
-                                            @if ($item->status !== 'pending' && $item->status !== 'process' && $item->status !== 'accepted_unconditional')
-                                                @if ($item->status == 'accepted')
+                                            @if ($item->status !== 'pending' && $item->status !== 'process' && $item->status !== 'accepted_unconditional' && $item->industry->created_at->addDays(5) <= \Carbon\Carbon::now())
+                                                @if ($item->status == 'accepted' && $item->industry->created_at->addDays(5) <= \Carbon\Carbon::now())
                                                     <span class="text-green-500">Diterima</span>
                                                 @else
                                                     <span class="text-red-600">Ditolak</span>
@@ -559,11 +588,11 @@
                                         </p>
                                 </li>
                             </ol>
-                            @if ($item->status == 'rejected')
+                            @if ($item->status == 'rejected' && !$item->industry->created_at->addDays(5) <= \Carbon\Carbon::now())
                                 <div class="mt-4">
                                     <button type="button"
                                         wire:click="$dispatch('relist-request', { id: {{ $item->id }} })"
-                                        class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 sm:w-auto dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                                        class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:ring-green-300 sm:w-auto dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                         Ulangi Permohonan
                                     </button>
                                 </div>
@@ -582,7 +611,7 @@
                                 <td class="w-32 ">
                                     <p class="font-semibold text-gray-900 dark:text-white">Nama Industri
                                 </td>
-                                <td class=" w-3">:</td>
+                                <td class="w-3 ">:</td>
                                 <td><span class="font-normal">{{ $selectedIndustry->name }}</span> </p>
                                 </td>
                             </tr>
@@ -590,7 +619,7 @@
                                 <td class="w-32 ">
                                     <p class="font-semibold text-gray-900 dark:text-white">Nama Pimpinan
                                 </td>
-                                <td class=" w-3">:</td>
+                                <td class="w-3 ">:</td>
                                 <td><span class="font-normal">{{ $selectedIndustry->leader }}</span> </p>
                                 </td>
                             </tr>
@@ -598,7 +627,7 @@
                                 <td class="w-32 ">
                                     <p class="font-semibold text-gray-900 dark:text-white">Alamat Industri
                                 </td>
-                                <td class=" w-3">:</td>
+                                <td class="w-3 ">:</td>
                                 <td><span class="font-normal">{{ $selectedIndustry->address }}</span> </p>
                                 </td>
                             </tr>
@@ -606,7 +635,7 @@
                                 <td class="w-32 ">
                                     <p class="font-semibold text-gray-900 dark:text-white">Jam Kerja
                                 </td>
-                                <td class=" w-3">:</td>
+                                <td class="w-3 ">:</td>
                                 <td><span
                                         class="font-normal">{{ \Carbon\Carbon::parse($selectedIndustry->entry_time)->format('H:i') }}
                                         - {{ \Carbon\Carbon::parse($selectedIndustry->exit_time)->format('H:i') }}</span> </p>
@@ -615,14 +644,14 @@
                         </table>
                     @endif
 
-                    <div class="flex mt-2 pt-2 pb-2">
-                        <div class="flex h-5 items-center">
+                    <div class="flex pt-2 pb-2 mt-2">
+                        <div class="flex items-center h-5">
                             <input id="helper-checkbox" aria-describedby="helper-checkbox-text" type="checkbox"
                                 value=""
-                                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                                 required>
                         </div>
-                        <div class="ms-2 text-sm">
+                        <div class="text-sm ms-2">
                             <label for="helper-checkbox" class="font-medium text-gray-900 dark:text-gray-300">Saya
                                 menyetujui</label>
                             <p id="helper-checkbox-text" class="text-xs font-normal text-gray-500 dark:text-gray-300">For
@@ -633,7 +662,7 @@
                     <button type="submit"
                         class="mb-2 me-2 mt-3 flex rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <span class="mr-1">Ajukan</span>
-                        <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                             height="24" fill="currentColor" viewBox="0 0 24 24">
                             <path fill-rule="evenodd"
                                 d="M11.403 5H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6.403a3.01 3.01 0 0 1-1.743-1.612l-3.025 3.025A3 3 0 1 1 9.99 9.768l3.025-3.025A3.01 3.01 0 0 1 11.403 5Z"
@@ -864,7 +893,7 @@
                                                 <button x-data @click="$dispatch('open-modal',{name:'process-request'})"
                                                     wire:click="$dispatch('process-request', { id: {{ $requestItem->id }} })"
                                                     type="button"
-                                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
                                                         xmlns="http://www.w3.org/2000/svg">
                                                         <path
@@ -903,7 +932,7 @@
                     </span>
                     <div class="flex items-center space-x-3">
                         <button
-                            class="flex text-white bg-blue-400 dark:bg-blue-500 cursor-not-allowed font-medium rounded-lg text-sm px-3 py-2 text-center"
+                            class="flex px-3 py-2 text-sm font-medium text-center text-white bg-blue-400 rounded-lg cursor-not-allowed dark:bg-blue-500"
                             disabled>
                             <svg class="w-5 h-5 mr-1 -ml-1" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -914,7 +943,7 @@
                             Sebelumnya
                         </button>
                         <button
-                            class="flex text-white bg-blue-400 dark:bg-blue-500 cursor-not-allowed font-medium rounded-lg text-sm px-3 py-2 text-center"
+                            class="flex px-3 py-2 text-sm font-medium text-center text-white bg-blue-400 rounded-lg cursor-not-allowed dark:bg-blue-500"
                             disabled>
                             Selanjutnya
                             <svg class="w-5 h-5 ml-1 -mr-1" fill="currentColor" viewBox="0 0 20 20"
@@ -935,7 +964,7 @@
                 <x-slot:body>
                     <form wire:submit.prevent="accept" class="p-4 md:p-5">
                         @if (!empty($selectedRequest))
-                            <h5 class="font-semibold text-xl text-gray-900 dark:text-white">Data Industri</h5>
+                            <h5 class="text-xl font-semibold text-gray-900 dark:text-white">Data Industri</h5>
 
                             <p class="font-semibold text-gray-900 dark:text-white">Nama Industri : <span
                                     class="font-normal">{{ $selectedRequest->industry->name }}</span> </p>
@@ -951,7 +980,7 @@
                             <p class="font-semibold text-gray-900 dark:text-white">Alamat : <span
                                     class="font-normal">{{ $selectedRequest->industry->address }}</span> </p>
 
-                            <h5 class="font-semibold text-xl text-gray-900 dark:text-white mt-3">Data Pemohon</h5>
+                            <h5 class="mt-3 text-xl font-semibold text-gray-900 dark:text-white">Data Pemohon</h5>
 
                             <p class="font-semibold text-gray-900 dark:text-white">Nama pemohon : <span
                                     class="font-normal">{{ $selectedRequest->user->name }}</span> </p>
@@ -973,7 +1002,7 @@
                                     class="font-normal">{{ $selectedRequest->user->students->first()->NISN }}</span> </p>
                         @endif
 
-                        <div class="grid gap-4 mb-4 grid-cols-2 mt-3">
+                        <div class="grid grid-cols-2 gap-4 mt-3 mb-4">
                             @if ($selectedRequest)
                                 @if ($selectedRequest->status == 'rejected')
                                 @else
@@ -1138,7 +1167,7 @@
                             </div>
                         </div>
                         <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
-                            {{-- <button type="button" x-data @click="$dispatch('open-modal',{name:'industry'})" class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            {{-- <button type="button" x-data @click="$dispatch('open-modal',{name:'industry'})" class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                     <svg class="w-5 h-5 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
                                     Tambah Industri
                                 </button> --}}
@@ -1237,7 +1266,7 @@
                     </span>
                     <div class="flex items-center space-x-3">
                         <button
-                            class="flex text-white bg-blue-400 dark:bg-blue-500 cursor-not-allowed font-medium rounded-lg text-sm px-3 py-2 text-center"
+                            class="flex px-3 py-2 text-sm font-medium text-center text-white bg-blue-400 rounded-lg cursor-not-allowed dark:bg-blue-500"
                             disabled>
                             <svg class="w-5 h-5 mr-1 -ml-1" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -1248,7 +1277,7 @@
                             Sebelumnya
                         </button>
                         <button
-                            class="flex text-white bg-blue-400 dark:bg-blue-500 cursor-not-allowed font-medium rounded-lg text-sm px-3 py-2 text-center"
+                            class="flex px-3 py-2 text-sm font-medium text-center text-white bg-blue-400 rounded-lg cursor-not-allowed dark:bg-blue-500"
                             disabled>
                             Selanjutnya
                             <svg class="w-5 h-5 ml-1 -mr-1" fill="currentColor" viewBox="0 0 20 20"
