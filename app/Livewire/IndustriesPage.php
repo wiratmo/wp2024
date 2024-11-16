@@ -29,6 +29,7 @@ class IndustriesPage extends Component
             flash()->addSuccess('Industri berhasil ditambah.');
         }else{
             $this->form->update($this->industryId);
+            $this->js("console.log($this->industryId)");
             $this->dispatch('close-modal');
             $this->render();
             flash()->addSuccess('Industri berhasil diubah.');
@@ -39,7 +40,7 @@ class IndustriesPage extends Component
     public function update($id)
     {
         $this->industryId = $id;
-        $industry = Industry::findOrFail($id);
+        $industry = Industry::with('major')->findOrFail($id);
         $this->form->fill([
             'name' => $industry->name,
             'leader' => $industry->leader,
@@ -49,10 +50,12 @@ class IndustriesPage extends Component
             'entry_time' => $industry->entry_time,
             'exit_time' => $industry->exit_time,
             'major_id' => $industry->major_id,
+            'major_name' => $industry->major->name,
             'exp' => $industry->date_expired,
         ]);
 
     }
+
 
     #[On('delete')]
     public function deleteId($id)

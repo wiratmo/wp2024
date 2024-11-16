@@ -32,13 +32,16 @@ class IndustryForm extends Form
     #[Validate('required')]
     public $exit_time = "00:00";
 
-    #[Validate('required')]
+    // #[Validate('required')]
+    // TODO sementara tidak required
     public $exp;
 
 
     #[Validate('required')]
     public $quota;
     public $major_id;
+
+    public $major_name;
 
      // Properti untuk verifikasi
     public $is_verify = 0; // Nilai default unverified
