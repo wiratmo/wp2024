@@ -432,7 +432,7 @@
                                                     stroke-linejoin="round" stroke-width="2" d="M184 48l144 0c4.4 0 8 3.6 8 8l0 40L176 96l0-40c0-4.4 3.6-8 8-8zm-56 8l0 40L64 96C28.7 96 0 124.7 0 160l0 96 192 0 128 0 192 0 0-96c0-35.3-28.7-64-64-64l-64 0 0-40c0-30.9-25.1-56-56-56L184 0c-30.9 0-56 25.1-56 56zM512 288l-192 0 0 32c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32l0-32L0 288 0 416c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-128z"/></svg>
                                         </span>
                                         <h2 class="pb-2 font-medium leading-tight text-black">Pengajuan Tempat PKL</h3>
-                                            <p class="text-sm text-gray-800 ">Sedang Diproses</p>
+                                            <p class="text-sm text-gray-800 ">Sedang Di evaluasi oleh koordinator</p>
                                     @endif
 
                                     
@@ -1100,22 +1100,27 @@
                                                 @if ($requestItem->status == 'process')
                                                     <div class="flex items-center">
                                                         <div class="h-2.5 w-2.5 rounded-full bg-yellow-300 mr-2"></div>
-                                                        Proses
+                                                        Diproses
+                                                    </div>
+                                                @elseif ($requestItem->status == 'accepted_unconditional')
+                                                    <div class="flex items-center">
+                                                        <div class="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div>
+                                                        <p>Mendapat Balasan <b> DITERIMA</b></p>
                                                     </div>
                                                 @elseif ($requestItem->status == 'accepted')
                                                     <div class="flex items-center">
                                                         <div class="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div>
                                                         Diterima
                                                     </div>
-                                                @elseif ($requestItem->status == 'rejected')
+                                                @elseif ($requestItem->status == 'rejected'||$requestItem->status == 'relisted')
                                                     <div class="flex items-center">
                                                         <div class="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div>
-                                                        Ditolak
+                                                        <p>Mendapat Balasan <b> DITOLAK</b></p>
                                                     </div>
                                                 @else
                                                     <div class="flex items-center">
                                                         <div class="h-2.5 w-2.5 rounded-full bg-gray-400 mr-2"></div>
-                                                        Pending
+                                                        Ditunggu untuk dievaluasi
                                                     </div>
                                                 @endif
 

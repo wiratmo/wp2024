@@ -13,7 +13,7 @@ use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Layout;
 use App\Livewire\Forms\IndustryForm;
-
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 #[Layout('layouts.app')]
@@ -199,12 +199,16 @@ class RequestsPage extends Component
         }
 
         $this->request = Request::where('user_id', Auth::id())->where('status', '!=', 'relisted');
-        $_limitDateRequest = 0;
+        $_limitDateRequest = Carbon::now()->addDay(5);
         if (count($students)>0){
             
-            $_= $this->request->first();
-            $firstProcessRequest = Request::where('industry_id', $_->industry_id)->where('status','process')->orderBy('updated_at', 'ASC')->first();
-            $_limitDateRequest = $firstProcessRequest->updated_at->addDay(5);
+            if($this->request->count()> 0){
+                $firstProcessRequest = Request::where('industry_id', $this->request->first()->industry_id)->where('status','process')->orderBy('updated_at', 'ASC');
+                if($firstProcessRequest->count()> 0) {
+                    $_limitDateRequest = $firstProcessRequest->first()->updated_at->addDay(5);
+                }
+            }
+
         } 
             $this->request = $this->request->get();
         
