@@ -1,9 +1,9 @@
 15 Nov 2024
 ## User Student 
 > 1. add industry -> Only input name, leader, phone, major, address
-> 2. Request blm mau di kirim
+> 2. Request blm mau di kirim -> sudah
 > 3. Gnerate surat permohonan blm tertampil
-> 
+> 4. permohonan diambil dari pengajuan terawal dengan status prosess
 
 
 ## User Admin
