@@ -29,29 +29,52 @@ class RolePermissionSeeder extends Seeder
         Permission::create(['name' => 'edit-teacher']);
         Permission::create(['name' => 'delete-teacher']);
 
+        Permission::create(['name' => 'view-industry']);
+
+        Permission::create(['name' => 'view-mentoring-student']);
+
+        Permission::create(['name' => 'plotting-teacher-student']);
+
+        Permission::create(['name' => 'verify-industry']);
+
+        Permission::create(['name' => 'edit-industry']);
         // Permission::create(['name' => 'tambah-transaksi']);
         // Permission::create(['name' => 'hapus-transaksi']);
 
-        Role::create(['name' => 'superadmin']);
         Role::create(['name' => 'admin']);
         Role::create(['name' => 'student']);
         Role::create(['name' => 'teacher']);
-
-        $roleSuperAdmin = Role::findByName('superadmin');
-        $roleSuperAdmin->givePermissionTo('view-admin');
-        $roleSuperAdmin->givePermissionTo('add-admin');
-        $roleSuperAdmin->givePermissionTo('edit-admin');
-        $roleSuperAdmin->givePermissionTo('delete-admin');
+        Role::create(['name' => 'industry']);
+        Role::create(['name' => 'coordinator']);
+        Role::create(['name' => 'k3']);
 
         $roleAdmin = Role::findByName('admin');
+        $roleAdmin->givePermissionTo('view-admin');
+        $roleAdmin->givePermissionTo('add-admin');
+        $roleAdmin->givePermissionTo('edit-admin');
+        $roleAdmin->givePermissionTo('delete-admin');
         $roleAdmin->givePermissionTo('view-student');
         $roleAdmin->givePermissionTo('add-student');
         $roleAdmin->givePermissionTo('edit-student');
         $roleAdmin->givePermissionTo('delete-student');
-
         $roleAdmin->givePermissionTo('view-teacher');
         $roleAdmin->givePermissionTo('add-teacher');
         $roleAdmin->givePermissionTo('edit-teacher');
         $roleAdmin->givePermissionTo('delete-teacher');
+
+        $roleStudent = Role::findByName('student');
+        $roleStudent->givePermissionTo('view-industry');
+
+        $roleTeacher = Role::findByName('teacher');
+        $roleTeacher->givePermissionTo('view-mentoring-student');
+
+        $roleCoordinator = Role::findByName('coordinator');
+        $roleCoordinator->givePermissionTo('plotting-teacher-student');
+
+        $roleK3 = Role::findByName('k3');
+        $roleK3->givePermissionTo('verify-industry');
+
+        $roleIndustry = Role::findByName('industry');
+        $roleIndustry->givePermissionTo('edit-industry');
     }
 }

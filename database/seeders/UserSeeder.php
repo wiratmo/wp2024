@@ -17,55 +17,52 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        // superadmin
-        $superAdmin = User::factory()->create([
-            'name' => 'superadmin',
-            'username' => 'superadmin',
-            'email' => 'super@email.com',
-            'password' => Hash::make('superadmin'),
-        ]);
-
         // admin
         $admin = User::factory()->create([
-            'name' => 'admin',
             'username' => 'admin',
             'email' => 'admin@email.com',
             'password' => Hash::make('admin123'),
         ]);
-
-        // major
-        $major = Major::create([
-            'name' => 'Pengembangan Perangkat Lunak dan Gim',
-            'acronym' => 'PPLG',
-            'short' => 'R',
+        Teacher::create([
+            'name' => 'Muklis',
+            'address' => 'Karanganyar',
+            'user_id' => $admin->id,
+            'phone' => '08124569871',
+            'NIP' => "0000",
         ]);
+        $admin->assignRole('admin');
 
         // student
         $student = User::factory()->create([
-            'name' => 'wisnu',
             'username' => 'student1',
             'email' => 'student1@email.com',
             'password' => Hash::make('student123'),
         ]);
         Student::create([
+            'name' => 'wisnu',
+            'address' => 'Sragen',
+            'phone' => '089976716781',
             'user_id' => $student->id,
-            'major_id' => $major->id,
+            'major_id' => 1,
             'NIS' => '8610',
             'NISN' => '0000000000',
             'enrollment_year' => '2024',
             'group' => 'B',
             'gender' => 'male',
         ]);
+
         $student->assignRole('student');
         $student = User::factory()->create([
-            'name' => 'naufal',
             'username' => 'student2',
             'email' => 'student2@email.com',
             'password' => Hash::make('student123'),
         ]);
         Student::create([
+            'name' => 'naufal',
+            'address' => 'Sragen',
+            'phone' => '089976716781',
             'user_id' => $student->id,
-            'major_id' => $major->id,
+            'major_id' => 1,
             'NIS' => '8610',
             'NISN' => '0000000000',
             'enrollment_year' => '2024',
@@ -73,15 +70,18 @@ class UserSeeder extends Seeder
             'gender' => 'male',
         ]);
         $student->assignRole('student');
+
         $student = User::factory()->create([
-            'name' => 'fatimah',
             'username' => 'student3',
             'email' => 'student3@email.com',
             'password' => Hash::make('student123'),
         ]);
         Student::create([
+            'name' => 'fatimah',
+            'address' => 'Sragen',
+            'phone' => '089976716781',
             'user_id' => $student->id,
-            'major_id' => $major->id,
+            'major_id' => 2,
             'NIS' => '8610',
             'NISN' => '0000000000',
             'enrollment_year' => '2024',
@@ -92,14 +92,14 @@ class UserSeeder extends Seeder
 
         // teacher
         $teacher = User::factory()->create([
-            'name' => 'agung wiratmo',
             'username' => 'teacher1',
             'email' => 'teacher1@email.com',
             'password' => Hash::make('teacher123'),
         ]);
 
         Teacher::create([
-            'major_id' => $major->id,
+            'name' => 'agung wiratmo',
+            'address' => 'Karanganyar',
             'user_id' => $teacher->id,
             'phone' => '08124569871',
             'NIP' => "199408232020121003",
@@ -107,21 +107,48 @@ class UserSeeder extends Seeder
         $teacher->assignRole('teacher');
         // teacher
         $teacher = User::factory()->create([
-            'name' => 'afif nuruudin',
             'username' => 'teacher2',
             'email' => 'teacher2@email.com',
             'password' => Hash::make('teacher123'),
         ]);
 
         Teacher::create([
-            'major_id' => $major->id,
+            'name' => 'afif nuruudin',
+            'address' => 'Sukoharjo',
             'user_id' => $teacher->id,
             'phone' => '08124569871',
             'NIP' => "1996000000000",
         ]);
         $teacher->assignRole('teacher');
+        // teacher
+        $teacher = User::factory()->create([
+            'username' => 'teacher3',
+            'email' => 'teacher3@email.com',
+            'password' => Hash::make('teacher123'),
+        ]);
 
-        $superAdmin->assignRole('superadmin');
-        $admin->assignRole('admin');
+        Teacher::create([
+            'name' => 'darsono',
+            'address' => 'Karanganyar',
+            'user_id' => $teacher->id,
+            'phone' => '08124569871',
+            'NIP' => "1996000000000",
+        ]);
+        $teacher->assignRole('teacher');
+        // teacher
+        $teacher = User::factory()->create([
+            'username' => 'teacher4',
+            'email' => 'teacher4@email.com',
+            'password' => Hash::make('teacher123'),
+        ]);
+
+        Teacher::create([
+            'name' => 'sukasno',
+            'address' => 'Sukoharjo',
+            'user_id' => $teacher->id,
+            'phone' => '08124569871',
+            'NIP' => "1996000000000",
+        ]);
+        $teacher->assignRole(['teacher', 'k3']);
     }
 }
