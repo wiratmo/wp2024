@@ -91,6 +91,7 @@ class RequestsPage extends Component
                 'status' => 'process',
             ]);
         }
+        flash()->addSuccess('Permohonan pengajuan tempat pkl di setujui');
 
     }
 
@@ -197,8 +198,19 @@ class RequestsPage extends Component
             $teacherStudentCompanions = collect(); // No teacher found, return empty collection
         }
 
-        $this->request = Request::where('user_id', Auth::id())->where('status', '!=', 'relisted')->get();
+        $this->request = Request::where('user_id', Auth::id())->where('status', '!=', 'relisted');
+        $_limitDateRequest = 0;
+        if (count($students)>0){
+            
+            $_= $this->request->first();
+            $firstProcessRequest = Request::where('industry_id', $_->industry_id)->where('status','process')->orderBy('updated_at', 'ASC')->first();
+            $_limitDateRequest = $firstProcessRequest->updated_at->addDay(5);
+        } 
+            $this->request = $this->request->get();
+        
+        
         return view('livewire.requests-page', [
+            'limitDateRequest' => $_limitDateRequest,
             'industries' => $industries,
             'requests' => Request::paginate(20),
             'teachers' => Teacher::get(),
