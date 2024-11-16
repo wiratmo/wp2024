@@ -13,3 +13,10 @@
 
 ## User Guru
 > 1. mengubah dari status pending ke acc pengajuan
+
+
+
+
+## noted
+untuk mengeluarkan nilai di live wire
+$this->js("console.log($this->requestId)");
