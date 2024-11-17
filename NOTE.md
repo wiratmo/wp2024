@@ -28,6 +28,8 @@
 
 > 3. Baik industry di user dan di teacher yang bisa terlihat adalah yang sejurusan dengan user -> blm di cek mendetail 
 > 4. Kalau request sudah accept harusnya progress permohonan hijau semua
+> 5. Verifikasi industri masuk tetapi untuk verificator_id belum masuk
+> 6. masih terdapat pilihan guru pendamping di luar kompetensi
 
 ## URGET
 > 1. upload file harus 2x baru bisa valid
