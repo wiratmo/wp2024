@@ -2,15 +2,16 @@
 
 namespace App\Livewire;
 
-use App\Models\Major;
+use App\Models\User;
 
+use App\Models\Major;
 use Livewire\Component;
 use App\Models\Industry;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
+use Livewire\WithFileUploads;
 use Livewire\Attributes\Layout;
 use App\Livewire\Forms\IndustryForm;
-use Livewire\WithFileUploads;
 
 #[Layout('layouts.app')]
 class IndustriesPage extends Component
@@ -49,6 +50,7 @@ class IndustriesPage extends Component
             'entry_time' => $industry->entry_time,
             'exit_time' => $industry->exit_time,
             'major_id' => $industry->major_id,
+            'user_id' => $this->form->user_id,
             'exp' => $industry->date_expired,
         ]);
 
@@ -105,6 +107,9 @@ class IndustriesPage extends Component
         return view('livewire.industries-page', [
             'industries' => $industries,
             'majors' => Major::all(),
+            'users' => User::whereHas('roles', function ($query) {
+                $query->where('name', 'industry');
+            })->get(),
         ]);
     }
 

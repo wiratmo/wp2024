@@ -39,6 +39,7 @@ class IndustryForm extends Form
     #[Validate('required')]
     public $quota;
     public $major_id;
+    public $user_id;
 
      // Properti untuk verifikasi
     public $is_verify = 0; // Nilai default unverified
@@ -47,7 +48,7 @@ class IndustryForm extends Form
     public function save()
     {
 
-        // dd($this->exp);
+        // dd($this->user_id);
         // exit;
         $this->validate();
              $extension = $this->mou->getClientOriginalExtension();
@@ -55,7 +56,7 @@ class IndustryForm extends Form
             $encryptedName = md5($name).'.'.$extension;
             $path = $this->mou->storeAs('mou', $encryptedName,'public');
 
-   
+
         Industry::create([
             'major_id' => (int) $this->major_id,
             'name' => $this->name,
@@ -65,11 +66,11 @@ class IndustryForm extends Form
             'quota' => $this->quota,
             'entry_time' => $this->entry_time,
             'exit_time' => $this->exit_time,
-            'user_id' => Auth::id(),
+            'user_id' => $this->user_id ?? Auth::id(),
             'is_verify' => $this->is_verify,
             'date_expired' => $this->exp,
-            'mou' => $path, 
-        ]); 
+            'mou' => $path,
+        ]);
         $this->reset();
 
     }
@@ -77,7 +78,8 @@ class IndustryForm extends Form
     public function update($id)
     {
         $this->validate();
-
+        // dd($this->user_id);
+        // exit;
         $industry = Industry::findOrFail($id);
         if ($this->mou) {
             $extension = $this->mou->getClientOriginalExtension();
@@ -97,7 +99,7 @@ class IndustryForm extends Form
             'quota' => $this->quota,
             'entry_time' => $this->entry_time,
             'exit_time' => $this->exit_time,
-            'user_id' => Auth::id(),
+            'user_id' => $this->user_id ?? Auth::id(),
             'is_verify' => $this->is_verify,
             'date_expired' => $this->exp,
             'mou' => $path
