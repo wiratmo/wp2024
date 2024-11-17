@@ -29,10 +29,10 @@ class RolePermissionSeeder extends Seeder
         Permission::create(['name' => 'edit-teacher']);
         Permission::create(['name' => 'delete-teacher']);
 
-        Permission::create(['name' => 'view-industries']);
-        Permission::create(['name' => 'add-industries']);
-        Permission::create(['name' => 'edit-industries']);
-        Permission::create(['name' => 'delete-industries']);
+        // Permission::create(['name' => 'view-industries']);
+        // Permission::create(['name' => 'add-industries']);
+        // Permission::create(['name' => 'edit-industries']);
+        // Permission::create(['name' => 'delete-industries']);
 
 
 
