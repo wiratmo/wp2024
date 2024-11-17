@@ -86,9 +86,26 @@ class IndustriesPage extends Component
 
     public function render()
     {
+        $user = auth()->user(); // Mengambil pengguna yang sedang login
+
+        // Mengambil nama role pertama dari koleksi roles
+        $roleName = $user->roles->pluck('name')->first();
+
+        if ($roleName === 'industry') {
+            // Jika role adalah 'industry', filter industri berdasarkan user_id
+            $industries = Industry::where('user_id', $user->id)
+                                  ->search($this->search)
+                                  ->paginate(10);
+        } else {
+            // Jika role selain 'industry', tampilkan semua data
+            $industries = Industry::search($this->search)
+                                  ->paginate(10);
+        }
+
         return view('livewire.industries-page', [
-            'industries' => Industry::search($this->search)->paginate(10),
+            'industries' => $industries,
             'majors' => Major::all(),
         ]);
     }
+
 }

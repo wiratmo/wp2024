@@ -23,7 +23,7 @@ class IndustriesSeeder extends Seeder
             "status" => "",
             "entry_time" => "07:30:00",
             "exit_time" => "16:00:00",
-            "user_id" => 2,
+            "user_id" => 8,
         ]);
 
         Industry::create([

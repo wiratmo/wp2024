@@ -7,7 +7,6 @@ use App\Models\Role;
 use App\Models\Request;
 use App\Models\Student;
 use App\Models\Teacher;
-use App\Models\detailRole;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Traits\HasRoles;
@@ -70,11 +69,6 @@ class User extends Authenticatable
     public function teachers(): HasMany
     {
         return $this->hasMany(Teacher::class);
-    }
-
-    public function details(): HasMany
-    {
-        return $this->hasMany(DetailRole::class, 'user_id');
     }
 
     public function scopeSearch($query, $value)
