@@ -34,9 +34,7 @@
             <tr>
                 <td style="width: 80px"></td>
                 <td colspan="4">
-                    <p>Kepada <br>Yth. Pimpinan/Kepala <br><b>Al Jadid Offset</b><br>Jl. M Supeno,
-                        Tegalgede,
-                        Karanganyar <br></p>
+                    <p>Kepada <br>Yth. Pimpinan/Kepala <br><b>{{ $user->first()->industry_leader }}</b><br>{{ $user->first()->industry_address }}<br></p>
                     <p><br>Dengan hormat,
                         <br>
                     </p>
@@ -55,13 +53,15 @@
                             <th style="width: 80px;">Kelas</th>
                             <th style="width: 150px;">Konsentrasi Keahlian</th>
                         </tr>
-                        <tr style="text-align: center;">
-                            <td>1</td>
-                            <td>GALANG KRISTANTO</td>
-                            <td>8575</td>
-                            <td>XII RPL A</td>
-                            <td>Rekayasa Perangkat Lunak</td>
-                        </tr>
+                        @foreach ($user as $item)
+                            <tr style="text-align: center;">
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->NIS }}</td>
+                                <td>{{ $item->class }}</td>
+                                <td>{{ $item->major_name }}</td>
+                            </tr>
+                        @endforeach
                     </table>
                     <p>Demikian permohonan yang kami buat atas peran serta dan kerjasama yang baik kami mengucapkan
                         terima kasih </p>
@@ -70,7 +70,7 @@
             <tr>
                 <td colspan="4"></td>
                 <td>
-                    <p>Karanganyar, 01 Oktober 2024 <br>
+                    <p>Karanganyar, {{\Carbon\Carbon::now()->locale('id')->isoFormat('Do MMMM YYYY');}} <br>
                         Kepala SMK Negeri 2 Karanganyar <br>
                         Kabupaten Karanganyar <br>
                         <br><br><br><br>
@@ -88,7 +88,7 @@
         <br>
         <p>
             Kepada <br>
-            Yth. <b>KEPALA SMK NEGERI 2 KARANGANYAR</b> <br>
+            Yth. <b>Kepala SMK Negeri 2 Karanganyar</b> <br>
             Jl. Yos Sudarso Jengglong Bejen Telp. (0271) 494549 <br>
             Karanganyar <br>
         </p>
@@ -97,7 +97,7 @@
         </p>
         <p style="text-align: justify">
             Sehubungan dengan Surat Permohonan Tempat Praktik Kerja Lapangan (PKL) dengan nomor 421.4/ 670/2024
-            tertanggal 01 Oktober 2024 maka kami dari pihak <b>Al Jadid Offset, Jl. M Supeno, Tegalgede, Karanganyar</b>
+            tertanggal {{\Carbon\Carbon::now()->locale('id')->isoFormat('Do MMMM YYYY');}}  maka kami dari pihak <b>{{ $user->first()->industry_name}}, {{ $user->first()->industry_address }}</b>
             menyatakan :
 
         <h4 style="text-align: center;"><b>( Menerima / Tidak Menerima )</b></h4>
@@ -116,41 +116,15 @@
                 <th style="width: 80px;">Kelas</th>
                 <th style="width: 150px;">Konsentrasi Keahlian</th>
             </tr>
-            <tr style="text-align: center;">
-                <td>1</td>
-                <td>GALANG KRISTANTO</td>
-                <td>8575</td>
-                <td>XII RPL A</td>
-                <td>Rekayasa Perangkat Lunak</td>
-            </tr>
-            <tr style="text-align: center;">
-                <td>2</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr style="text-align: center;">
-                <td>3</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr style="text-align: center;">
-                <td>5</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr style="text-align: center;">
-                <td>6</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            @foreach ($user as $item)
+                <tr style="text-align: center;">
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $item->name }}</td>
+                    <td>{{ $item->NIS }}</td>
+                    <td>{{ $item->class }}</td>
+                    <td>{{ $item->major_name }}</td>
+                </tr>
+            @endforeach
         </table>
         </p>
         <br>
@@ -163,10 +137,10 @@
         </p>
         <p style="margin-left: 400px">...................., ....................... 2024 <br> <br>
             Pimpinan DU/DI <br><br>
-            .......................................... <br>
+            {{$user->first()->industry_name}} <br>
             <br><br><br><br>
             <br>
-            .......................................... <br>
+            {{$user->first()->industry_leader}} <br>
         </p>
 
         <div>
