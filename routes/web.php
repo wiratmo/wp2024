@@ -23,12 +23,12 @@ Route::group(['middleware' => ['role:admin|superadmin']], function () {
     Route::get('/majors', MajorsPage::class)->middleware('auth');
     Route::get('/industries', IndustriesPage::class)->middleware('auth');
 });
-
+Route::group(['middleware' => ['role:superadmin|admin|k3|coordinator|industry']], function () {
     Route::get('/students', StudentsPage::class)->middleware('auth');
     Route::get('/teachers', TeachersPage::class)->middleware('auth');
     Route::get('/majors', MajorsPage::class)->middleware('auth');
     Route::get('/industries', IndustriesPage::class)->middleware('auth');
-
+});
 
 Route::get('/requests', RequestsPage::class)->middleware('auth');
 Route::get('/settings', SettingsPage::class)->middleware('auth');
