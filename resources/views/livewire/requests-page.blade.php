@@ -403,7 +403,7 @@
                                         <p class="w-56 font-semibold text-gray-900 dark:text-white">Guru Pendamping
                                     </td>
                                     <td class="w-3">:</td>
-                                    <td> <span class="font-normal">{{ $request->first()->teacher->user->name }}</span> </p>
+                                    <td> <span class="font-normal">{{ ($request->first()->teacher_id == null ? "Belum mendapat guru pembimbing": $request->first()->teacher->name) }}</span> </p>
                                     </td>
                                 </tr>
                                 <tr class="align-text-top">
@@ -411,7 +411,7 @@
                                         <p class="w-56 font-semibold text-gray-900 dark:text-white">Telp Guru Pendamping
                                     </td>
                                     <td class="w-3">:</td>
-                                    <td> <span class="font-normal">{{ $request->first()->teacher->phone }}</span> </p>
+                                    <td> <span class="font-normal">{{ ($request->first()->teacher_id == null ? "Belum mendapat guru pembimbing": $request->first()->teacher->phone) }}</span> </p>
                                     </td>
                                 </tr>
                                 @endif
