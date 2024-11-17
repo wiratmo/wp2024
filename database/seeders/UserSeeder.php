@@ -107,8 +107,6 @@ class UserSeeder extends Seeder
             'NIP' => "199408232020121003",
         ]);
         $teacher->assignRole('teacher');
-
-       
         // teacher
         $teacher = User::factory()->create([
             'username' => 'teacher2',

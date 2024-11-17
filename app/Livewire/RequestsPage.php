@@ -222,7 +222,6 @@ class RequestsPage extends Component
             'requests' => Request::paginate(20),
             'teachers' => User::role('teacher')->with('teachers')->get(),
             'teacherStudentCompanions' => $teacherStudentCompanions,
-            'majors' => Major::all(),
         ]);
     }
 }

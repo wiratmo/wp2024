@@ -48,6 +48,8 @@ class IndustryForm extends Form
 
         // dd($this->exp);
         // exit;
+        // dd($this->exp);
+        // exit;
         $this->validate();
              $extension = $this->mou->getClientOriginalExtension();
             $name= $this->mou->getClientOriginalName();
@@ -62,11 +64,7 @@ class IndustryForm extends Form
             'address' => $this->address,
             'phone' => $this->phone,
             'quota' => $this->quota,
-            'user_id' => Auth::id(),
-            'is_verify' => $this->is_verify,
-            'date_expired' => $this->exp,
-            'mou' => $path, 
-        ]); 
+        ]);
         $this->reset();
 
     }

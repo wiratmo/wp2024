@@ -2,6 +2,7 @@
     @hasrole('student')
         @if ($request->isEmpty())
             <div class="mt-1.5 p-4">
+                
                 <div class="mb-4 col-span-full xl:mb-2">
                     <nav class="flex mb-5" aria-label="Breadcrumb">
                         <ol class="inline-flex items-center space-x-1 text-sm font-medium md:space-x-2">
@@ -227,8 +228,8 @@
                                                     <button disabled type="button"
                                                         class="inline-flex px-3 py-2 text-sm font-medium text-center text-white bg-gray-400 rounded-lg cursor-not-allowed dark:bg-gray-500">
                                                         <svg class="w-4 h-4" aria-hidden="true"
-                                                            xmlns="http://www.w3.org/2000/svg" width="24"
-                                                            height="24" fill="currentColor" viewBox="0 0 24 24">
+                                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            fill="currentColor" viewBox="0 0 24 24">
                                                             <path fill-rule="evenodd"
                                                                 d="M11.403 5H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6.403a3.01 3.01 0 0 1-1.743-1.612l-3.025 3.025A3 3 0 1 1 9.99 9.768l3.025-3.025A3.01 3.01 0 0 1 11.403 5Z"
                                                                 clip-rule="evenodd" />
@@ -252,8 +253,8 @@
                                                         type="button"
                                                         class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                                         <svg class="w-4 h-4" aria-hidden="true"
-                                                            xmlns="http://www.w3.org/2000/svg" width="24"
-                                                            height="24" fill="currentColor" viewBox="0 0 24 24">
+                                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            fill="currentColor" viewBox="0 0 24 24">
                                                             <path fill-rule="evenodd"
                                                                 d="M11.403 5H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6.403a3.01 3.01 0 0 1-1.743-1.612l-3.025 3.025A3 3 0 1 1 9.99 9.768l3.025-3.025A3.01 3.01 0 0 1 11.403 5Z"
                                                                 clip-rule="evenodd" />
@@ -352,6 +353,7 @@
                 </div>
             </div>
             @foreach ($request as $item)
+            
                 <div class="p-4 pt-0">
                     <div class="grid gap-4 sm:grid-cols-1 lg:grid-cols-2 sm:gap-4 ">
                         <div
@@ -383,37 +385,35 @@
                                     <td> <span class="font-normal">{{ $item->industry->address }}</span> </p>
                                     </td>
                                 </tr>
-                                @if ($item->status == 'accepted')
-                                    <tr class="align-text-top">
-                                        <td>
-                                            <p class="w-56 font-semibold text-gray-900 dark:text-white">Jam Kerja
-                                        </td>
-                                        <td class="w-3">:</td>
-                                        <td><span
-                                                class="font-normal">{{ \Carbon\Carbon::parse($item->industry->entry_time)->format('H:i') }}
-                                                -
-                                                {{ \Carbon\Carbon::parse($item->industry->exit_time)->format('H:i') }}</span>
-                                            </p>
-                                        </td>
-                                    </tr>
-                                    <tr class="align-text-top">
-                                        <td>
-                                            <p class="w-56 font-semibold text-gray-900 dark:text-white">Guru Pendamping
-                                        </td>
-                                        <td class="w-3">:</td>
-                                        <td> <span class="font-normal">{{ ($request->first()->teacher_id == null ? "Belum mendapat guru pembimbing": $request->first()->teacher->name) }}</span>
-                                            </p>
-                                        </td>
-                                    </tr>
-                                    <tr class="align-text-top">
-                                        <td>
-                                            <p class="w-56 font-semibold text-gray-900 dark:text-white">Telp Guru
-                                                Pendamping
-                                        </td>
-                                        <td class="w-3">:</td>
-                                        <td> <span class="font-normal">{{ ($request->first()->teacher_id == null ? "Belum mendapat guru pembimbing": $request->first()->teacher->phone) }}</span>
-                                        </td>
-                                    </tr>
+                            @if ($item->status == 'accepted')
+
+                                <tr class="align-text-top">
+                                    <td>
+                                        <p class="w-56 font-semibold text-gray-900 dark:text-white">Jam Kerja
+                                    </td>
+                                    <td class="w-3">:</td>
+                                    <td><span
+                                        class="font-normal">{{ \Carbon\Carbon::parse($item->industry->entry_time)->format('H:i') }}
+                                        -
+                                        {{ \Carbon\Carbon::parse($item->industry->exit_time)->format('H:i') }}</span> </p>
+                                    </td>
+                                </tr>
+                                <tr class="align-text-top">
+                                    <td>
+                                        <p class="w-56 font-semibold text-gray-900 dark:text-white">Guru Pendamping
+                                    </td>
+                                    <td class="w-3">:</td>
+                                    <td> <span class="font-normal">{{ $request->first()->teacher->user->name }}</span> </p>
+                                    </td>
+                                </tr>
+                                <tr class="align-text-top">
+                                    <td>
+                                        <p class="w-56 font-semibold text-gray-900 dark:text-white">Telp Guru Pendamping
+                                    </td>
+                                    <td class="w-3">:</td>
+                                    <td> <span class="font-normal">{{ $request->first()->teacher->phone }}</span> </p>
+                                    </td>
+                                </tr>
                                 @endif
                             </table>
 
@@ -510,7 +510,7 @@
                                                     stroke-linejoin="round" stroke-width="2"
                                                     d="M5 14v7M5 4.971v9.541c5.6-5.538 8.4 2.64 14-.086v-9.54C13.4 7.61 10.6-.568 5 4.97Z" />
                                             </svg>
-
+                                            
                                         </span>
                                     @elseif (
                                         ($item->status == 'accepted' && $limitDateRequest <= \Carbon\Carbon::now()) ||
@@ -700,6 +700,7 @@
                                         </p>
                                 </li>
                             </ol>
+                            
                             @if ($item->status == 'rejected' && !$limitDateRequest <= \Carbon\Carbon::now())
                                 <div class="mt-4">
                                     <button type="button"
@@ -712,78 +713,78 @@
                         </div>
                     </div>
             @endforeach
-    </div>
-    @endif
-    <x-modal name="request" title="Ajukan PKL" height="h-[380px]">
-        <x-slot:body>
-            <form wire:submit.prevent="request_pkl" class="p-4 md:p-5">
-                @if (!empty($selectedIndustry))
-                    <table class="table">
-                        <tr class="align-text-top">
-                            <td class="w-32 ">
-                                <p class="font-semibold text-gray-900 dark:text-white">Nama Industri
-                            </td>
-                            <td class="w-3 ">:</td>
-                            <td><span class="font-normal">{{ $selectedIndustry->name }}</span> </p>
-                            </td>
-                        </tr>
-                        <tr class="align-text-top">
-                            <td class="w-32 ">
-                                <p class="font-semibold text-gray-900 dark:text-white">Nama Pimpinan
-                            </td>
-                            <td class="w-3 ">:</td>
-                            <td><span class="font-normal">{{ $selectedIndustry->leader }}</span> </p>
-                            </td>
-                        </tr>
-                        <tr class="align-text-top">
-                            <td class="w-32 ">
-                                <p class="font-semibold text-gray-900 dark:text-white">Alamat Industri
-                            </td>
-                            <td class="w-3 ">:</td>
-                            <td><span class="font-normal">{{ $selectedIndustry->address }}</span> </p>
-                            </td>
-                        </tr>
-                        <tr class="align-text-top">
-                            <td class="w-32 ">
-                                <p class="font-semibold text-gray-900 dark:text-white">Jam Kerja
-                            </td>
-                            <td class="w-3 ">:</td>
-                            <td><span
-                                    class="font-normal">{{ \Carbon\Carbon::parse($selectedIndustry->entry_time)->format('H:i') }}
-                                    - {{ \Carbon\Carbon::parse($selectedIndustry->exit_time)->format('H:i') }}</span> </p>
-                            </td>
-                        </tr>
-                    </table>
-                @endif
-
-                <div class="flex pt-2 pb-2 mt-2">
-                    <div class="flex items-center h-5">
-                        <input id="helper-checkbox" aria-describedby="helper-checkbox-text" type="checkbox"
-                            value=""
-                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
-                            required>
-                    </div>
-                    <div class="text-sm ms-2">
-                        <label for="helper-checkbox" class="font-medium text-gray-900 dark:text-gray-300">Saya
-                            menyetujui</label>
-                        <p id="helper-checkbox-text" class="text-xs font-normal text-gray-500 dark:text-gray-300">
-                            Saya menyetujui segala ketentuan untuk mendaftar di tempat PKL ini</p>
-                    </div>
                 </div>
+        @endif
+        <x-modal name="request" title="Ajukan PKL" height="h-[380px]">
+            <x-slot:body>
+                <form wire:submit.prevent="request_pkl" class="p-4 md:p-5">
+                    @if (!empty($selectedIndustry))
+                        <table class="table">
+                            <tr class="align-text-top">
+                                <td class="w-32 ">
+                                    <p class="font-semibold text-gray-900 dark:text-white">Nama Industri
+                                </td>
+                                <td class="w-3 ">:</td>
+                                <td><span class="font-normal">{{ $selectedIndustry->name }}</span> </p>
+                                </td>
+                            </tr>
+                            <tr class="align-text-top">
+                                <td class="w-32 ">
+                                    <p class="font-semibold text-gray-900 dark:text-white">Nama Pimpinan
+                                </td>
+                                <td class="w-3 ">:</td>
+                                <td><span class="font-normal">{{ $selectedIndustry->leader }}</span> </p>
+                                </td>
+                            </tr>
+                            <tr class="align-text-top">
+                                <td class="w-32 ">
+                                    <p class="font-semibold text-gray-900 dark:text-white">Alamat Industri
+                                </td>
+                                <td class="w-3 ">:</td>
+                                <td><span class="font-normal">{{ $selectedIndustry->address }}</span> </p>
+                                </td>
+                            </tr>
+                            <tr class="align-text-top">
+                                <td class="w-32 ">
+                                    <p class="font-semibold text-gray-900 dark:text-white">Jam Kerja
+                                </td>
+                                <td class="w-3 ">:</td>
+                                <td><span
+                                        class="font-normal">{{ \Carbon\Carbon::parse($selectedIndustry->entry_time)->format('H:i') }}
+                                        - {{ \Carbon\Carbon::parse($selectedIndustry->exit_time)->format('H:i') }}</span> </p>
+                                </td>
+                            </tr>
+                        </table>
+                    @endif
 
-                <button type="submit"
-                    class="mb-2 me-2 mt-3 flex rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    <span class="mr-1">Ajukan</span>
-                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                        height="24" fill="currentColor" viewBox="0 0 24 24">
-                        <path fill-rule="evenodd"
-                            d="M11.403 5H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6.403a3.01 3.01 0 0 1-1.743-1.612l-3.025 3.025A3 3 0 1 1 9.99 9.768l3.025-3.025A3.01 3.01 0 0 1 11.403 5Z"
-                            clip-rule="evenodd" />
-                        <path fill-rule="evenodd"
-                            d="M13.232 4a1 1 0 0 1 1-1H20a1 1 0 0 1 1 1v5.768a1 1 0 1 1-2 0V6.414l-6.182 6.182a1 1 0 0 1-1.414-1.414L17.586 5h-3.354a1 1 0 0 1-1-1Z"
-                            clip-rule="evenodd" />
-                    </svg>
-                </button>
+                    <div class="flex pt-2 pb-2 mt-2">
+                        <div class="flex items-center h-5">
+                            <input id="helper-checkbox" aria-describedby="helper-checkbox-text" type="checkbox"
+                                value=""
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
+                                required>
+                        </div>
+                        <div class="text-sm ms-2">
+                            <label for="helper-checkbox" class="font-medium text-gray-900 dark:text-gray-300">Saya
+                                menyetujui</label>
+                            <p id="helper-checkbox-text" class="text-xs font-normal text-gray-500 dark:text-gray-300">For
+                                Saya menyetujui segala ketentuan untuk mendaftar di tempat PKL ini</p>
+                        </div>
+                    </div>
+
+                    <button type="submit"
+                        class="mb-2 me-2 mt-3 flex rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <span class="mr-1">Ajukan</span>
+                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                            height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd"
+                                d="M11.403 5H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6.403a3.01 3.01 0 0 1-1.743-1.612l-3.025 3.025A3 3 0 1 1 9.99 9.768l3.025-3.025A3.01 3.01 0 0 1 11.403 5Z"
+                                clip-rule="evenodd" />
+                            <path fill-rule="evenodd"
+                                d="M13.232 4a1 1 0 0 1 1-1H20a1 1 0 0 1 1 1v5.768a1 1 0 1 1-2 0V6.414l-6.182 6.182a1 1 0 0 1-1.414-1.414L17.586 5h-3.354a1 1 0 0 1-1-1Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </button>
 
 
 
@@ -1244,7 +1245,6 @@
                 <x-slot:body>
                     <form wire:submit.prevent="accept" class="p-4 md:p-5">
                         @if (!empty($selectedRequest))
-                        
                             <h5 class="text-xl font-semibold text-gray-900 dark:text-white">Data Industri</h5>
 
                             <p class="font-semibold text-gray-900 dark:text-white">Nama Industri : <span
