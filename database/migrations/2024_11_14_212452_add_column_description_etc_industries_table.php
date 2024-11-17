@@ -20,7 +20,7 @@ return new class extends Migration
                 $table->boolean('is_verify')->nullable();
                 $table->unsignedBigInteger('verificator_id')->nullable();
                 $table->string('mou')->nullable();
-                $table->date('mou_expired')->nullable();
+                $table->date('date_expired')->nullable();
 
                 $table->foreign('verificator_id')->references('id')->on('users')->onDelete('cascade');
             }
