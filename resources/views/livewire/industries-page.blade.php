@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
-                        <button type="button" x-data @click="$dispatch('open-modal',{name:'industry'})" class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <button type="button" x-data @click="$dispatch('open-modal',{name:'industry'})" class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             <svg class="w-5 h-5 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
                             Tambah Industri
                         </button>
@@ -92,10 +92,7 @@
                                         Nama Pimpinan
                                     </th>
                                     <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                        Jam Kerja
-                                    </th>
-                                    <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                        Status
+                                        Verifikasi
                                     </th>
                                     <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
                                         Actions
@@ -112,35 +109,46 @@
                                                 <label for="checkbox-1" class="sr-only">checkbox</label>
                                             </div>
                                         </td>
-                                        <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $industry->name }}</td>
-                                        <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ Str::limit($industry->address, 50, '...') }}</td>
-                                        <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $industry->phone }}</td>
-                                        <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $industry->major->acronym }}</td>
-                                        <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $industry->countAcceptedRequests() }}/{{ $industry->quota }}</td>
-                                        <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $industry->leader }}</td>
-                                        <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ \Carbon\Carbon::parse($industry->entry_time)->format('H:i') }} - {{ \Carbon\Carbon::parse($industry->exit_time)->format('H:i') }}</td>
-                                        @if ($industry->countAcceptedRequests() >= $industry->quota)
-                                            <td class="whitespace-nowrap p-4 text-base font-normal text-gray-900 dark:text-white">
-                                                <div class="flex items-center">
-                                                    <div class="mr-2 h-2.5 w-2.5 rounded-full bg-red-500"></div> Terpenuhi
-                                                </div>
-                                            </td>
-                                        @else
-                                            <td class="whitespace-nowrap p-4 text-base font-normal text-gray-900 dark:text-white">
-                                                <div class="flex items-center">
-                                                    <div class="mr-2 h-2.5 w-2.5 rounded-full bg-green-400"></div> Tersedia
-                                                </div>
-                                            </td>
-                                        @endif
+                                        <td class="p-4 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $industry->name }}</td>
+                                        <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">{{ Str::limit($industry->address, 50, '...') }}</td>
+                                        <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">{{ $industry->phone }}</td>
+                                        <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">{{ $industry->major->acronym }}</td>
+                                        <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">{{ $industry->countAcceptedRequests() }}/{{ $industry->quota }}</td>
+                                        <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">{{ $industry->leader }}</td>
+                                        
+                                        
+                                            
+
+                                        <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
+                                            <div class="flex items-center">
+                                            @if ($industry->is_verify == 0)
+                                                <div class="mr-2 h-2.5 w-2.5 rounded-full bg-red-500"></div> Belum Verifikasi
+                                            @else
+                                                <div class="mr-2 h-2.5 w-2.5 rounded-full bg-green-400"></div> Terverifikasi
+                                            @endif
+                                            </div>
+                                        </td>
                                         <td class="p-4 space-x-2 whitespace-nowrap">
-                                            <button x-data @click="$dispatch('open-modal',{name:'industry'})" wire:click="$dispatch('edit-industry', { id: {{ $industry->id }} })" type="button" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                            <!-- 
+                                                Button to full edited
+                                            -->
+                                            <button x-data @click="$dispatch('open-modal',{name:'industry'})" wire:click="$dispatch('edit-industry', { id: {{ $industry->id }} })" type="button" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path><path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd"></path></svg>
-                                                {{-- Edit industri --}}
                                             </button>
+                                            {{-- Deleted industri --}}
                                             <button type="button" @click="$dispatch('delete-modal',{ name:'delete-industry'})" wire:click="$dispatch('delete', { id: {{ $industry->id }} })" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
                                                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
-                                                {{-- Delete industri --}}
                                             </button>
+                                            {{-- Delete industri --}}
+                                            
+                                            {{-- only verify industry--}}
+                                            <button x-data @click="$dispatch('open-modal',{name:'verify_industry'})" wire:click="$dispatch('edit-industry', { id: {{ $industry->id }} })" type="button" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 0 1 9 9v.375M10.125 2.25A3.375 3.375 0 0 1 13.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 0 1 3.375 3.375M9 15l2.25 2.25L15 12" />
+                                                  </svg>
+                                                  
+                                            </button>
+                                            {{-- only verify idustry --}}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -166,11 +174,11 @@
                     </span>
                 </span>
                 <div class="flex items-center space-x-3">
-                    <button class="flex text-white bg-blue-400 dark:bg-blue-500 cursor-not-allowed font-medium rounded-lg text-sm px-3 py-2 text-center" disabled>
+                    <button class="flex px-3 py-2 text-sm font-medium text-center text-white bg-blue-400 rounded-lg cursor-not-allowed dark:bg-blue-500" disabled>
                         <svg class="w-5 h-5 mr-1 -ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
                         Sebelumnya
                     </button>
-                    <button class="flex text-white bg-blue-400 dark:bg-blue-500 cursor-not-allowed font-medium rounded-lg text-sm px-3 py-2 text-center" disabled>
+                    <button class="flex px-3 py-2 text-sm font-medium text-center text-white bg-blue-400 rounded-lg cursor-not-allowed dark:bg-blue-500" disabled>
                         Selanjutnya
                         <svg class="w-5 h-5 ml-1 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
                     </button>
@@ -184,7 +192,7 @@
         <x-modal name="industry" title="Industri" height="h-[820px]">
             <x-slot:body>
                 <form wire:submit.prevent="save" class="p-4 md:p-5">
-                    <div class="grid gap-4 mb-4 grid-cols-2">
+                    <div class="grid grid-cols-2 gap-4 mb-4">
                         <div class="col-span-2">
                             <label for="name" class="block mb-2 text-sm font-medium
                                 @if ($errors->has('form.name'))
@@ -260,6 +268,28 @@
                                 <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops! </span>{{$message}}</p>
                             @enderror
                         </div>
+
+                        <div class="col-span-2">
+                            <label for="major" class="block mb-2 text-sm font-medium
+                                @if ($errors->has('form.major_id'))
+                                    text-red-700 dark:text-red-500
+                                @else
+                                    text-gray-900 dark:text-white
+                                @endif">
+                                Verifikasi
+                            </label>
+                            <select id="is_verify" wire:model.live="form.is_verify" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                @foreach (['1' => 'Verified', '0' => 'Unverified'] as $value => $label)
+                                    <option value="{{ $value }}" @if ($form->is_verify == $value) selected @endif>
+                                        {{ $label }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error("form.is_verify")
+                                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops! </span>{{$message}}</p>
+                            @enderror
+                        </div>
+
                         <div class="col-span-1">
                             <label for="entry_time" class="block mb-2 text-sm font-medium
                                 @if ($errors->has('form.entry_time'))
@@ -330,25 +360,39 @@
                                 <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops! </span>{{$message}}</p>
                             @enderror
                         </div>
+                        <div class="col-span-2">
+                            <label for="exp" class="block mb-2 text-sm font-medium
+                                @if ($errors->has('form.exp'))
+                                    text-red-700 dark:text-red-500
+                                @else
+                                    text-gray-900 dark:text-white
+                                @endif">
+                                exp
+                            </label>
+                            <input type="date" wire:model.live="form.exp" id="address" rows="4" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Alamat industri..."></input>
+                            @error("form.exp")
+                                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops! </span>{{$message}}</p>
+                            @enderror
+                        </div>  
+                        <div class="mb-3">
+                            <label for="file" class="form-label">Upload File</label>
+                                <input type="file" wire:model="form.mou">
+
+                                @error('form.mou')
+                                    <span class="error">{{ $message }}</span>
+                                @enderror
+
+                            </div>
 
 
 
 
                     </div>
                     <button type="submit" class="text-white inline-flex items-center {{ $industryId ? 'bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-300 dark:bg-green-400 dark:hover:bg-green-500 dark:focus:ring-green-600' : 'bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800' }} focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                        <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="w-5 h-5 me-1 -ms-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
                         </svg>
-                        {{ $industryId ? 'Update' : 'Tambah' }} Industri
-                        {{-- <div wire:loading>
-                            <div role="status">
-                                <svg aria-hidden="true" class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
-                                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
-                                </svg>
-                                <span class="sr-only">Loading...</span>
-                            </div>
-                        </div> --}}
+                        {{ $industryId ? 'Update' : 'Tambah' }} Industri 
                     </button>
 
 
@@ -358,6 +402,101 @@
 
         {{-- Delete User Modal --}}
         <x-delete-modal name="delete-industry" />
+
+        {{-- K3 Verivyed Modal --}}
+        <x-modal name="verify_industry" title="Industri" height="h-[820px]">
+            <x-slot:body>
+                <form wire:submit.prevent="save" class="p-4 md:p-5">
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div class="col-span-2">
+                            <label for="name" class="block text-sm font-light text-gray-900 dark:text-white">
+                                Nama Industri 
+                                <p class="block text-base font-bold">{{$form->name}}</p>
+                            </label>
+                        </div>
+                        <div class="col-span-2">
+                            <label for="leader" class="block text-sm font-light text-gray-900 dark:text-white">
+                                Nama Pimpinan
+                                <p class="block text-base font-bold">{{$form->leader}}</p>
+                            </label>
+                        </div>
+                        <div class="col-span-2">
+                            <label for="phone" class="block text-sm font-light text-gray-900 dark:text-white">
+                                Telepon
+                                <p class="block text-base font-bold">{{$form->phone}}</p>
+                            </label>
+                        </div>
+                        <div class="col-span-2">
+                            <label for="major" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                Jurusan
+                                <p class="block text-base font-bold">{{$form->major_name}}</p>
+                            </label>
+                        </div>
+
+                        
+                        <div class="col-span-2">
+                            <label for="quota" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                Kuota
+                                <p class="block text-base font-bold">{{$form->quota}}</p>
+                            </label>
+                        </div>
+                        <div class="col-span-2">
+                            <label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                Alamat
+                                <p class="block text-base font-bold">{{$form->address}}</p>
+                            </label>
+                            
+                        </div>
+                        <div class="col-span-2">
+                            <label for="exp" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                Tanggal MOU Berakhir
+                                <p class="block text-base font-bold">{{$form->exp}}</p>
+                            </label>
+                            
+                        </div>  
+                        <div class="mb-3">
+                            <label for="mou" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                rencananya ini mou
+
+                            </div>
+
+
+
+
+                    </div>
+
+                        <div class="col-span-2">
+                            <label for="major" class="block mb-2 text-sm font-medium
+                                @if ($errors->has('form.major_id'))
+                                    text-red-700 dark:text-red-500
+                                @else
+                                    text-gray-900 dark:text-white
+                                @endif">
+                                Verifikasi
+                            </label>
+                            <select id="is_verify" wire:model.live="form.is_verify" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                @foreach (['1' => 'Verified', '0' => 'Unverified'] as $value => $label)
+                                    <option value="{{ $value }}" @if ($form->is_verify == $value) selected @endif>
+                                        {{ $label }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error("form.is_verify")
+                                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops! </span>{{$message}}</p>
+                            @enderror
+                        </div>
+                    <button type="submit" class="text-white inline-flex items-center {{ $industryId ? 'bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-300 dark:bg-green-400 dark:hover:bg-green-500 dark:focus:ring-green-600' : 'bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800' }} focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                        <svg class="w-5 h-5 me-1 -ms-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
+                        </svg>
+                        Perbarui Verifikasi Industri
+                       
+                    </button>
+
+
+                </form>
+            </x-slot>
+        </x-modal>
 
     </main>
 </div>
