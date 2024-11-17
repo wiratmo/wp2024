@@ -21,8 +21,11 @@ class Request extends Model
         "teacher_id",
         "notes",
         "letter",
+        "processes_approved_at",
     ];
-
+    protected $casts = [
+        'processes_approved_at' => 'datetime:Y-m-d H:00',
+    ];
     public function user()
     {
         return $this->belongsTo(User::class);
