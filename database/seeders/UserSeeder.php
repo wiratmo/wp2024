@@ -107,18 +107,8 @@ class UserSeeder extends Seeder
             'NIP' => "199408232020121003",
         ]);
         $teacher->assignRole('teacher');
-
-        $role = Role::where('name', 'k3')->first();
-        if ($role) {
-            $teacher->assignRole('teacher');
-            detailRole::create([
-                'role_id' => $role->id,
-                'user_id' => $teacher->id,
-            ]);
-        } else {
-            echo "Role k3 tidak ditemukan!";
-        }
-
+        $teacher->assignRole('k3');
+        $teacher->assignRole('coordinator');
 
 
         // teacher
@@ -136,6 +126,16 @@ class UserSeeder extends Seeder
             'NIP' => "1996000000000",
         ]);
         $teacher->assignRole('teacher');
+        $teacher->assignRole('coordinator');
+
+        //industry
+        $industry = User::factory()->create([
+            'name' => 'Tan Gay O',
+            'username' => 'industry1',
+            'email' => 'industry1@email.com',
+            'password' => Hash::make('industry123'),
+        ]);
+        $industry->assignRole('industry');
 
         $superAdmin->assignRole('superadmin');
         $admin->assignRole('admin');
