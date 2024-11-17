@@ -2,13 +2,15 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use App\Models\Major;
 use App\Models\Student;
 use App\Models\Teacher;
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\detailRole;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class UserSeeder extends Seeder
 {
@@ -19,9 +21,9 @@ class UserSeeder extends Seeder
     {
         // admin
         $admin = User::factory()->create([
-            'username' => 'admin',
-            'email' => 'admin@email.com',
-            'password' => Hash::make('admin123'),
+            'username' => 'superadmin',
+            'email' => 'superadmin@email.com',
+            'password' => Hash::make('superadmin'),
         ]);
         Teacher::create([
             'name' => 'Muklis',
@@ -30,7 +32,7 @@ class UserSeeder extends Seeder
             'phone' => '08124569871',
             'NIP' => "0000",
         ]);
-        $admin->assignRole('admin');
+        $admin->assignRole('superadmin');
 
         // student
         $student = User::factory()->create([
@@ -90,7 +92,7 @@ class UserSeeder extends Seeder
         ]);
         $student->assignRole('student');
 
-        // teacher
+        // teacher + k3
         $teacher = User::factory()->create([
             'username' => 'teacher1',
             'email' => 'teacher1@email.com',
@@ -105,6 +107,8 @@ class UserSeeder extends Seeder
             'NIP' => "199408232020121003",
         ]);
         $teacher->assignRole('teacher');
+
+       
         // teacher
         $teacher = User::factory()->create([
             'username' => 'teacher2',

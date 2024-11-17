@@ -29,6 +29,7 @@ class RolePermissionSeeder extends Seeder
         Permission::create(['name' => 'edit-teacher']);
         Permission::create(['name' => 'delete-teacher']);
 
+
         Permission::create(['name' => 'view-industry']);
 
         Permission::create(['name' => 'view-mentoring-student']);
@@ -41,14 +42,14 @@ class RolePermissionSeeder extends Seeder
         // Permission::create(['name' => 'tambah-transaksi']);
         // Permission::create(['name' => 'hapus-transaksi']);
 
-        Role::create(['name' => 'admin']);
+        Role::create(['name' => 'superadmin']);
         Role::create(['name' => 'student']);
         Role::create(['name' => 'teacher']);
         Role::create(['name' => 'industry']);
         Role::create(['name' => 'coordinator']);
         Role::create(['name' => 'k3']);
 
-        $roleAdmin = Role::findByName('admin');
+        $roleAdmin = Role::findByName('superadmin');
         $roleAdmin->givePermissionTo('view-admin');
         $roleAdmin->givePermissionTo('add-admin');
         $roleAdmin->givePermissionTo('edit-admin');
